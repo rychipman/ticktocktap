@@ -1,8 +1,10 @@
 package com.ryanchipman.nfclock;
 
-import android.os.Bundle;
 import android.app.Activity;
+import android.content.Intent;
+import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 
 public class AlarmsActivity extends Activity {
 
@@ -18,5 +20,16 @@ public class AlarmsActivity extends Activity {
 		getMenuInflater().inflate(R.menu.alarms, menu);
 		return true;
 	}
-
+	
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+			case R.id.action_add_alarm: {
+				Intent intent = new Intent(this, AlarmDetailActivity.class);
+				startActivity(intent);
+				break;
+			}
+		}
+		return super.onOptionsItemSelected(item);
+	}
 }
