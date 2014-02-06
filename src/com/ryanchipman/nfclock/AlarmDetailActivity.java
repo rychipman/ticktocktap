@@ -12,6 +12,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.ryanchipman.nfclock.model.AlarmDBHelper;
 import com.ryanchipman.nfclock.model.AlarmModel;
@@ -119,14 +120,16 @@ public class AlarmDetailActivity extends Activity {
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.action_save_alarm_details:
-			updateModelFromLayout();
-			if (alarmDetails.id < 0) {
-				dbHelper.createAlarm(alarmDetails);
-			} else {
-				dbHelper.updateAlarm(alarmDetails);
+			if(verifyUserInput()) {
+				updateModelFromLayout();
+				if (alarmDetails.id < 0) {
+					dbHelper.createAlarm(alarmDetails);
+				} else {
+					dbHelper.updateAlarm(alarmDetails);
+				}
+				setResult(RESULT_OK);
+	            finish();
 			}
-			setResult(RESULT_OK);
-            finish();
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -137,51 +140,38 @@ public class AlarmDetailActivity extends Activity {
 
 		if (resultCode == RESULT_OK) {
 	        switch (requestCode) {
-		        case 1: {
+		        case 1:
 		        	alarmDetails.alarmTone = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
 		        	TextView txtToneSelection = (TextView) findViewById(R.id.alarm_label_tone_selection);
 		        	txtToneSelection.setText(RingtoneManager.getRingtone(this, alarmDetails.alarmTone).getTitle(this));
 		            break;
-		        }
-		        default: {
+		        default:
 		            break;
-		        }
 	        }
 	    }
 	}
 	
+	private boolean verifyUserInput() {
+		if(alarmDetails.alarmTone == null) {
+			Toast t = Toast.makeText(this, R.string.details_missing_ringtone, Toast.LENGTH_SHORT);
+			t.show();
+			return false;
+		}
+		return true;
+	}
+	
 	private void updateModelFromLayout() {
-		TimePicker timePicker = (TimePicker) findViewById(R.id.alarm_details_time_picker);
 		alarmDetails.timeMinute = timePicker.getCurrentMinute().intValue();
 		alarmDetails.timeHour = timePicker.getCurrentHour().intValue();
-
-		EditText edtName = (EditText) findViewById(R.id.alarm_details_name);
 		alarmDetails.name = edtName.getText().toString();
-
-		CustomToggleButton chkWeekly = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_weekly);
 		alarmDetails.repeatWeekly = chkWeekly.isChecked();
-
-		CustomToggleButton chkSunday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_sunday);
 		alarmDetails.setRepeatingDay(AlarmModel.SUNDAY, chkSunday.isChecked());
-
-		CustomToggleButton chkMonday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_monday);
 		alarmDetails.setRepeatingDay(AlarmModel.MONDAY, chkMonday.isChecked());
-
-		CustomToggleButton chkTuesday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_tuesday);
 		alarmDetails.setRepeatingDay(AlarmModel.TUESDAY, chkTuesday.isChecked());
-
-		CustomToggleButton chkWednesday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_wednesday);
 		alarmDetails.setRepeatingDay(AlarmModel.WEDNESDAY, chkWednesday.isChecked());
-
-		CustomToggleButton chkThursday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_thursday);
 		alarmDetails.setRepeatingDay(AlarmModel.THURSDAY, chkThursday.isChecked());
-
-		CustomToggleButton chkFriday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_friday);
 		alarmDetails.setRepeatingDay(AlarmModel.FRDIAY, chkFriday.isChecked());
-
-		CustomToggleButton chkSaturday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_saturday);
 		alarmDetails.setRepeatingDay(AlarmModel.SATURDAY, chkSaturday.isChecked());
-
 		alarmDetails.isEnabled = true;
 	}
 }
