@@ -20,6 +20,11 @@ public class AlarmModel {
 	public String name;
 	public boolean isEnabled;
 
+	public AlarmModel(long id) {
+		this.id = id;
+		repeatingDays = new boolean[7];
+	}
+	
 	public AlarmModel() {
 		repeatingDays = new boolean[7];
 	}

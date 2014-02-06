@@ -1,17 +1,29 @@
 package com.ryanchipman.nfclock;
 
-import android.app.Activity;
+import java.util.List;
+
+import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class AlarmsActivity extends Activity {
+import com.ryanchipman.nfclock.model.AlarmDBHelper;
+import com.ryanchipman.nfclock.model.AlarmModel;
+import com.ryanchipman.nfclock.ui.AlarmListAdapter;
 
+public class AlarmsActivity extends ListActivity {
+	
+	private AlarmDBHelper dbHelper;
+	private AlarmListAdapter mAdapter;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alarms);
+		dbHelper = new AlarmDBHelper(this);
+		mAdapter = new AlarmListAdapter(this, dbHelper.getAlarms());
+		setListAdapter(mAdapter);
 	}
 
 	@Override
@@ -24,12 +36,33 @@ public class AlarmsActivity extends Activity {
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
-			case R.id.action_add_alarm: {
-				Intent intent = new Intent(this, AlarmDetailActivity.class);
-				startActivity(intent);
+			case R.id.action_add_alarm:
+				startAlarmDetailActivity(-1);
 				break;
-			}
 		}
 		return super.onOptionsItemSelected(item);
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+
+		if (resultCode == RESULT_OK) {
+			List<AlarmModel> thesealarms = dbHelper.getAlarms();
+			mAdapter.setAlarms(dbHelper.getAlarms());
+			mAdapter.notifyDataSetChanged();
+		} 
+	}
+	
+	public void setAlarmEnabled(long id, boolean isEnabled) {
+		AlarmModel model = dbHelper.getAlarm(id);
+		model.isEnabled = isEnabled;
+		dbHelper.updateAlarm(model);
+	}
+	
+	public void startAlarmDetailActivity(long id) {
+		Intent intent = new Intent(this, AlarmDetailActivity.class);
+		intent.putExtra("id", id);
+		startActivityForResult(intent, 0);
 	}
 }
