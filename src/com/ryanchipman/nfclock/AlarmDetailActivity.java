@@ -29,7 +29,7 @@ public class AlarmDetailActivity extends Activity {
 		// Show the Up button in the action bar.
 		setupActionBar();
 		
-		final LinearLayout ringToneContainer = (LinearLayout) findViewById(R.id.alarm_ringtone_container);
+		final View ringToneContainer = findViewById(R.id.alarm_ringtone_container);
 		ringToneContainer.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {

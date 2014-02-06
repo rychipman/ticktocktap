@@ -46,6 +46,10 @@ public class CustomToggleButton extends FrameLayout {
 			button = new CheckBox(context);
 		}
 		button.setId(1);
+		
+		//Initalise and configure button label
+		label = new TextView(context);
+		label.setId(2);
 
 		RelativeLayout.LayoutParams buttonParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		buttonParams.topMargin = 16;
@@ -53,10 +57,6 @@ public class CustomToggleButton extends FrameLayout {
 		buttonParams.addRule(RelativeLayout.ALIGN_PARENT_TOP);
 		buttonParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
 		buttonParams.addRule(RelativeLayout.ALIGN_RIGHT, label.getId());
-
-		//Initalise and configure button label
-		label = new TextView(context);
-		label.setId(2);
 
 		RelativeLayout.LayoutParams labelParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
 		labelParams.leftMargin = 8;
