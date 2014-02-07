@@ -124,6 +124,7 @@ public class AlarmDetailActivity extends Activity {
 			if (alarmDetails.id < 0) {
 				dbHelper.createAlarm(alarmDetails);
 				Intent i = new Intent(this, AlarmService.class);
+				i.setAction(AlarmService.ACTION_CREATE);
 				i.putExtra(AlarmsActivity.EXTRA_MODEL, alarmDetails);
 				startService(i);
 			} else {

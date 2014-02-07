@@ -43,6 +43,7 @@ public class AlarmService extends IntentService {
     	
         AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(this, AlarmReceiver.class);
+        i.putExtra(AlarmsActivity.EXTRA_MODEL, alarm);
         PendingIntent pi = PendingIntent.getBroadcast(this, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
         if (ACTION_CREATE.equals(action)) {
             am.set(AlarmManager.RTC_WAKEUP, startTime, pi);
