@@ -2,6 +2,10 @@ package com.ryanchipman.nfclock.model;
 
 import android.provider.BaseColumns;
 
+/**
+ * Columns for the SQLite db
+ * @author rchipman
+ */
 public final class AlarmContract {
 	
 	public AlarmContract() {}
