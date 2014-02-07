@@ -13,6 +13,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
 
+import com.ryanchipman.nfclock.alarm.AlarmService;
 import com.ryanchipman.nfclock.model.AlarmDBHelper;
 import com.ryanchipman.nfclock.model.AlarmModel;
 import com.ryanchipman.nfclock.ui.CustomToggleButton;
@@ -122,6 +123,9 @@ public class AlarmDetailActivity extends Activity {
 			updateModelFromLayout();
 			if (alarmDetails.id < 0) {
 				dbHelper.createAlarm(alarmDetails);
+				Intent i = new Intent(this, AlarmService.class);
+				i.putExtra(AlarmsActivity.EXTRA_MODEL, alarmDetails);
+				startService(i);
 			} else {
 				dbHelper.updateAlarm(alarmDetails);
 			}

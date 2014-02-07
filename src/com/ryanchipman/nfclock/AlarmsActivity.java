@@ -17,6 +17,8 @@ public class AlarmsActivity extends ListActivity {
 	private AlarmDBHelper dbHelper;
 	private AlarmListAdapter mAdapter;
 	
+	public static final String EXTRA_MODEL = "alarm model extra";
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
