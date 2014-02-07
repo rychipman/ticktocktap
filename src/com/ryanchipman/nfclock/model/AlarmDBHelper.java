@@ -80,7 +80,12 @@ public class AlarmDBHelper extends SQLiteOpenHelper {
 
 		return values;
 	}
-
+	
+	/**
+	 * Create a new alarm based on the given model
+	 * @param model the AlarmModel containing the representation of an alarm
+	 * @return the primary key of the newly created row, which is also assigned to model.id
+	 */
 	public long createAlarm(AlarmModel model) {
 		ContentValues values = populateContent(model);
 		return getWritableDatabase().insert(Alarm.TABLE_NAME, null, values);

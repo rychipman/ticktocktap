@@ -67,7 +67,8 @@ public class AlarmDetailActivity extends Activity {
 		});
 		
 		long id = getIntent().getExtras().getLong("id");
-
+		
+		//an id of -1 tells us this is a new alarm
 		if (id == -1) {
 			alarmDetails = new AlarmModel(id);
 		} else {
@@ -122,13 +123,18 @@ public class AlarmDetailActivity extends Activity {
 		case R.id.action_save_alarm_details:
 			updateModelFromLayout();
 			if (alarmDetails.id < 0) {
-				dbHelper.createAlarm(alarmDetails);
+				long key = dbHelper.createAlarm(alarmDetails);
+				alarmDetails.id = key;
 				Intent i = new Intent(this, AlarmService.class);
 				i.setAction(AlarmService.ACTION_CREATE);
 				i.putExtra(AlarmsActivity.EXTRA_MODEL, alarmDetails);
 				startService(i);
 			} else {
 				dbHelper.updateAlarm(alarmDetails);
+				Intent i = new Intent(this, AlarmService.class);
+				i.setAction(AlarmService.ACTION_UPDATE);
+				i.putExtra(AlarmsActivity.EXTRA_MODEL, alarmDetails);
+				startService(i);
 			}
 			setResult(RESULT_OK);
             finish();

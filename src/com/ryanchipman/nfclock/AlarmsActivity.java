@@ -39,6 +39,7 @@ public class AlarmsActivity extends ListActivity {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 			case R.id.action_add_alarm:
+				//id of -1 for creating new alarm
 				startAlarmDetailActivity(-1);
 				break;
 		}
@@ -50,7 +51,6 @@ public class AlarmsActivity extends ListActivity {
 		super.onActivityResult(requestCode, resultCode, data);
 
 		if (resultCode == RESULT_OK) {
-			List<AlarmModel> thesealarms = dbHelper.getAlarms();
 			mAdapter.setAlarms(dbHelper.getAlarms());
 			mAdapter.notifyDataSetChanged();
 		} 
