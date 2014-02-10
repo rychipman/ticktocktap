@@ -1,6 +1,7 @@
-package com.ryanchipman.nfclock.alarm;
+package com.ryanchipman.ticktocktap.alarm;
 
 import java.util.Calendar;
+
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.AlarmManager;
@@ -10,8 +11,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
-import com.ryanchipman.nfclock.AlarmsActivity;
-import com.ryanchipman.nfclock.model.AlarmModel;
+
+import com.ryanchipman.ticktocktap.AlarmsActivity;
+import com.ryanchipman.ticktocktap.model.AlarmModel;
 
 public class AlarmService extends IntentService {
      

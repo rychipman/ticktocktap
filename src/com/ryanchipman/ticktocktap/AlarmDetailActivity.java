@@ -1,4 +1,4 @@
-package com.ryanchipman.nfclock;
+package com.ryanchipman.ticktocktap;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -15,10 +15,11 @@ import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.ryanchipman.nfclock.alarm.AlarmService;
-import com.ryanchipman.nfclock.model.AlarmDBHelper;
-import com.ryanchipman.nfclock.model.AlarmModel;
-import com.ryanchipman.nfclock.ui.CustomToggleButton;
+import com.ryanchipman.ticktocktap.R;
+import com.ryanchipman.ticktocktap.alarm.AlarmService;
+import com.ryanchipman.ticktocktap.model.AlarmDBHelper;
+import com.ryanchipman.ticktocktap.model.AlarmModel;
+import com.ryanchipman.ticktocktap.ui.CustomToggleButton;
 
 public class AlarmDetailActivity extends Activity {
 	

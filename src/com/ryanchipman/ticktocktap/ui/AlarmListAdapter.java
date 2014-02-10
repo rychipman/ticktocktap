@@ -1,4 +1,4 @@
-package com.ryanchipman.nfclock.ui;
+package com.ryanchipman.ticktocktap.ui;
 
 import java.util.List;
 
@@ -15,10 +15,10 @@ import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.TextView;
 import android.widget.ToggleButton;
 
-import com.ryanchipman.nfclock.AlarmDetailActivity;
-import com.ryanchipman.nfclock.AlarmsActivity;
-import com.ryanchipman.nfclock.R;
-import com.ryanchipman.nfclock.model.AlarmModel;
+import com.ryanchipman.ticktocktap.AlarmDetailActivity;
+import com.ryanchipman.ticktocktap.AlarmsActivity;
+import com.ryanchipman.ticktocktap.R;
+import com.ryanchipman.ticktocktap.model.AlarmModel;
 
 public class AlarmListAdapter extends BaseAdapter {
 

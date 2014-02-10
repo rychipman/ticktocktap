@@ -1,4 +1,4 @@
-package com.ryanchipman.nfclock.alarm;
+package com.ryanchipman.ticktocktap.alarm;
 
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -9,9 +9,9 @@ import android.content.Intent;
 import android.media.AudioManager;
 import android.net.Uri;
 
-import com.ryanchipman.nfclock.AlarmsActivity;
-import com.ryanchipman.nfclock.R;
-import com.ryanchipman.nfclock.model.AlarmModel;
+import com.ryanchipman.ticktocktap.AlarmsActivity;
+import com.ryanchipman.ticktocktap.R;
+import com.ryanchipman.ticktocktap.model.AlarmModel;
 
 public class AlarmReceiver extends BroadcastReceiver {
  

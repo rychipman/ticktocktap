@@ -1,4 +1,4 @@
-package com.ryanchipman.nfclock.model;
+package com.ryanchipman.ticktocktap.model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -10,7 +10,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.net.Uri;
 
-import com.ryanchipman.nfclock.model.AlarmContract.Alarm;
+import com.ryanchipman.ticktocktap.model.AlarmContract.Alarm;
 
 public class AlarmDBHelper extends SQLiteOpenHelper {
 

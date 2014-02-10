@@ -1,6 +1,6 @@
-package com.ryanchipman.nfclock.ui;
+package com.ryanchipman.ticktocktap.ui;
 
-import com.ryanchipman.nfclock.R;
+import com.ryanchipman.ticktocktap.R;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

@@ -1,4 +1,4 @@
-package com.ryanchipman.nfclock.model;
+package com.ryanchipman.ticktocktap.model;
 
 import android.provider.BaseColumns;
 

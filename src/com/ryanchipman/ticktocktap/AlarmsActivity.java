@@ -1,4 +1,4 @@
-package com.ryanchipman.nfclock;
+package com.ryanchipman.ticktocktap;
 
 import android.app.ListActivity;
 import android.content.Intent;
@@ -6,9 +6,10 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.ryanchipman.nfclock.model.AlarmDBHelper;
-import com.ryanchipman.nfclock.model.AlarmModel;
-import com.ryanchipman.nfclock.ui.AlarmListAdapter;
+import com.ryanchipman.ticktocktap.R;
+import com.ryanchipman.ticktocktap.model.AlarmDBHelper;
+import com.ryanchipman.ticktocktap.model.AlarmModel;
+import com.ryanchipman.ticktocktap.ui.AlarmListAdapter;
 
 public class AlarmsActivity extends ListActivity {
 	

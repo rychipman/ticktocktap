@@ -1,4 +1,4 @@
-package com.ryanchipman.nfclock.alarm;
+package com.ryanchipman.ticktocktap.alarm;
 
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;

@@ -1,4 +1,4 @@
-package com.ryanchipman.nfclock.model;
+package com.ryanchipman.ticktocktap.model;
 
 import android.net.Uri;
 import android.os.Parcel;

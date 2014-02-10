@@ -1,8 +1,9 @@
-package com.ryanchipman.nfclock;
+package com.ryanchipman.ticktocktap;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.view.Menu;
+import com.ryanchipman.ticktocktap.R;
 
 public class MainActivity extends Activity {
 

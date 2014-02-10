@@ -36,7 +36,7 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/alarm_details_name" />
         
-        <com.ryanchipman.nfclock.ui.CustomToggleButton
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
             android:id="@+id/alarm_details_repeat_weekly"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
             android:checked="true"
             android:text="@string/details_repeat_weekly" />
         
-        <com.ryanchipman.nfclock.ui.CustomToggleButton
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
             android:id="@+id/alarm_details_repeat_sunday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -55,7 +55,7 @@
             android:checked="true"
             android:text="@string/details_sunday" />
         
-        <com.ryanchipman.nfclock.ui.CustomToggleButton
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
             android:id="@+id/alarm_details_repeat_monday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -65,7 +65,7 @@
             android:checked="true"
             android:text="@string/details_monday" />
         
-        <com.ryanchipman.nfclock.ui.CustomToggleButton
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
             android:id="@+id/alarm_details_repeat_tuesday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -75,7 +75,7 @@
             android:checked="true"
             android:text="@string/details_tuesday" />
         
-        <com.ryanchipman.nfclock.ui.CustomToggleButton
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
             android:id="@+id/alarm_details_repeat_wednesday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -85,7 +85,7 @@
             android:checked="true"
             android:text="@string/details_wednesday" />
         
-        <com.ryanchipman.nfclock.ui.CustomToggleButton
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
             android:id="@+id/alarm_details_repeat_thursday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -95,7 +95,7 @@
             android:checked="true"
             android:text="@string/details_thursday" />
         
-        <com.ryanchipman.nfclock.ui.CustomToggleButton
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
             android:id="@+id/alarm_details_repeat_friday"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -105,7 +105,7 @@
             android:checked="true"
             android:text="@string/details_friday" />
 
-        <com.ryanchipman.nfclock.ui.CustomToggleButton
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
 	        android:id="@+id/alarm_details_repeat_saturday"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ryanchipman.nfclock"
+    package="com.ryanchipman.ticktocktap"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -17,14 +17,14 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
         <activity
-            android:name="com.ryanchipman.nfclock.MainActivity"
+            android:name="com.ryanchipman.ticktocktap.MainActivity"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ryanchipman.nfclock.AlarmsActivity"
+            android:name="com.ryanchipman.ticktocktap.AlarmsActivity"
             android:label="@string/title_activity_alarms" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -33,23 +33,27 @@
             </intent-filter>
         </activity>
         <activity
-            android:name="com.ryanchipman.nfclock.AlarmDetailActivity"
+            android:name="com.ryanchipman.ticktocktap.AlarmDetailActivity"
             android:label="@string/title_activity_alarm_detail"
-            android:parentActivityName="com.ryanchipman.nfclock.AlarmsActivity" >
+            android:parentActivityName="com.ryanchipman.ticktocktap.AlarmsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ryanchipman.nfclock.AlarmsActivity" />
         </activity>
-        <receiver android:name=".alarm.AlarmBootReceiver"
+        <receiver
+                  android:name=".alarm.AlarmBootReceiver"
 		          android:enabled="false">
 		    <intent-filter>
 		        <action android:name="android.intent.action.BOOT_COMPLETED"></action>
 		    </intent-filter>
 		</receiver>
-		<receiver android:name=".alarm.AlarmReceiver"
+		<receiver
+		          android:name=".alarm.AlarmReceiver"
 		          android:enabled="true">
 		</receiver>
-        <service android:name=".alarm.AlarmService"></service>
+        <service
+            android:name=".alarm.AlarmService">
+        </service>
     </application>
 
 </manifest>
