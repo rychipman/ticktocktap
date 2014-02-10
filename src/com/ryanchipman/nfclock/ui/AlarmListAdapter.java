@@ -53,7 +53,7 @@ public class AlarmListAdapter extends BaseAdapter {
 	@Override
 	public long getItemId(int position) {
 		if (mAlarms != null) {
-			return mAlarms.get(position).id;
+			return mAlarms.get(position).getID();
 		}
 		return 0;
 	}
@@ -66,10 +66,10 @@ public class AlarmListAdapter extends BaseAdapter {
 		}
 		AlarmModel model = (AlarmModel) getItem(position);
 		TextView txtTime = (TextView) view.findViewById(R.id.alarm_item_time);
-		txtTime.setText(String.format("%02d : %02d", model.timeHour, model.timeMinute));
+		txtTime.setText(String.format("%02d : %02d", model.getTimeHour(), model.getTimeMinute()));
 
 		TextView txtName = (TextView) view.findViewById(R.id.alarm_item_name);
-		txtName.setText(model.name);
+		txtName.setText(model.getName());
 
 		updateTextColor((TextView) view.findViewById(R.id.alarm_item_sunday), model.getRepeatingDay(AlarmModel.SUNDAY));
 		updateTextColor((TextView) view.findViewById(R.id.alarm_item_monday), model.getRepeatingDay(AlarmModel.MONDAY));
@@ -79,7 +79,7 @@ public class AlarmListAdapter extends BaseAdapter {
 		updateTextColor((TextView) view.findViewById(R.id.alarm_item_friday), model.getRepeatingDay(AlarmModel.FRDIAY));		
 		updateTextColor((TextView) view.findViewById(R.id.alarm_item_saturday), model.getRepeatingDay(AlarmModel.SATURDAY));
 		
-		view.setTag(Long.valueOf(model.id));
+		view.setTag(Long.valueOf(model.getID()));
 		view.setOnClickListener(new OnClickListener() {
 
 			@Override
@@ -89,8 +89,8 @@ public class AlarmListAdapter extends BaseAdapter {
 		});
 		
 		ToggleButton btnToggle = (ToggleButton) view.findViewById(R.id.alarm_item_toggle);
-		btnToggle.setChecked(model.isEnabled);
-		btnToggle.setTag(Long.valueOf(model.id));
+		btnToggle.setChecked(model.isEnabled());
+		btnToggle.setTag(Long.valueOf(model.getID()));
 		btnToggle.setOnCheckedChangeListener(new OnCheckedChangeListener() {
 
 			@Override

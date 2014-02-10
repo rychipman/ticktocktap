@@ -28,10 +28,17 @@ public class AlarmReceiver extends BroadcastReceiver {
     	.setContentTitle("Alarm Title Here")
     	.setContentText("Wake up! This is an alarm!")
     	.setSmallIcon(R.drawable.ic_launcher)
-    	.setSound(alarm.alarmTone, AudioManager.STREAM_ALARM)
+    	.setSound(alarm.getAlarmTone(), AudioManager.STREAM_ALARM)
     	.build();    
          
         nm.notify(1212, notif);
+    }
+    
+    //TODO: make it so alarm notifications dont shut of when screen tapped
+    
+    private void disable(AlarmModel alarm) {
+    	//TODO: check if future alarms exist. if not, disable this alarm
+    	alarm.setEnabled(false);
     }
  
 }

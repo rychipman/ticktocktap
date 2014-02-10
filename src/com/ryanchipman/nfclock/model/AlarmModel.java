@@ -10,23 +10,23 @@ import android.os.Parcelable;
  */
 public class AlarmModel implements Parcelable{
 	//Day constants
-	public static final int SUNDAY = 0;
-	public static final int MONDAY = 1;
-	public static final int TUESDAY = 2;
-	public static final int WEDNESDAY = 3;
-	public static final int THURSDAY = 4;
-	public static final int FRDIAY = 5;
-	public static final int SATURDAY = 6;
+	public static final int SUNDAY = 1;
+	public static final int MONDAY = 2;
+	public static final int TUESDAY = 3;
+	public static final int WEDNESDAY = 4;
+	public static final int THURSDAY = 5;
+	public static final int FRDIAY = 6;
+	public static final int SATURDAY = 7;
 
-	//alarm id TODO: figure out what this does and where it gets set
-	public long id;
-	public int timeHour; //TODO: look into representing this as just a date or timemillis object
-	public int timeMinute;
+	private long id;
+	private int[] hashes;
+	private int timeHour; //TODO: look into representing this as just a date or timemillis object
+	private int timeMinute;
 	private boolean repeatingDays[];//which days the alarm repeats
-	public boolean repeatWeekly;//does it repeat weekly?
-	public Uri alarmTone; //ringtone TODO: add functionality for choosing music or other tones
-	public String name; //name of the alarm
-	public boolean isEnabled; //if it is enabled
+	private boolean repeatWeekly;//does it repeat weekly?
+	private Uri alarmTone; //ringtone TODO: add functionality for choosing music or other tones
+	private String name; //name of the alarm
+	private boolean isEnabled; //if it is enabled
 
 	/**
 	 * Basic AlarmModel constructor
@@ -35,6 +35,7 @@ public class AlarmModel implements Parcelable{
 	public AlarmModel(long id) {
 		this.id = id;
 		repeatingDays = new boolean[7];
+		hashes = new int[7];
 	}
 	
 	/**
@@ -45,6 +46,8 @@ public class AlarmModel implements Parcelable{
 	public AlarmModel(Parcel pc) {
 		//don't change the order of these! must be same as when parceled
 		id = pc.readLong();
+		hashes = new int[7];
+		pc.readIntArray(hashes);
 		timeHour = pc.readInt();
 		timeMinute = pc.readInt();
 		repeatingDays = new boolean[7];
@@ -61,14 +64,84 @@ public class AlarmModel implements Parcelable{
 	public AlarmModel() {
 		id = -1;
 		repeatingDays = new boolean[7];
+		hashes = new int[7];
 	}
 
 	public void setRepeatingDay(int dayOfWeek, boolean value) {
-		repeatingDays[dayOfWeek] = value;
+		repeatingDays[dayOfWeek-1] = value;
 	}
 
 	public boolean getRepeatingDay(int dayOfWeek) {
-		return repeatingDays[dayOfWeek];
+		return repeatingDays[dayOfWeek-1];
+	}
+	
+	public void setID(long id) {
+		this.id = id;
+		createHashes();
+	}
+	
+	public long getID() {
+		return id;
+	}
+	
+	public void setTimeHour(int hour) {
+		timeHour = hour;
+	}
+	
+	public int getTimeHour() {
+		return timeHour;
+	}
+	
+	public void setTimeMinute(int minute) {
+		timeMinute = minute;
+	}
+	
+	public int getTimeMinute() {
+		return timeMinute;
+	}
+	
+	public void setRepeatWeekly(boolean repeat) {
+		repeatWeekly = repeat;
+	}
+	
+	public boolean repeatsWeekly() {
+		return repeatWeekly;
+	}
+	
+	//TODO: rep exposure?
+	public void setAlarmTone(Uri tone) {
+		this.alarmTone = tone;
+	}
+	
+	public Uri getAlarmTone() {
+		return alarmTone;
+	}
+	
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getName() {
+		return name;
+	}
+	
+	public void setEnabled(boolean enabled) {
+		isEnabled = enabled;
+	}
+	
+	public boolean isEnabled() {
+		return isEnabled;
+	}
+	
+	public int getAlarmHash(int dayOfWeek) {
+		return hashes[dayOfWeek-1];
+		//bacause sunday is 1 and saturday is 8
+	}
+	
+	private void createHashes() {
+		for(int i=0; i<7; i++) {
+			hashes[i] = 7*((Long) id).intValue() + i;
+		}
 	}
 	
 	/**
@@ -102,6 +175,7 @@ public class AlarmModel implements Parcelable{
 	public void writeToParcel(Parcel dest, int flags) {
 		//Do not change order...must be same as unparceling order
 		dest.writeLong(id);
+		dest.writeIntArray(hashes);
 		dest.writeInt(timeHour);
 		dest.writeInt(timeMinute);
 		dest.writeBooleanArray(repeatingDays);

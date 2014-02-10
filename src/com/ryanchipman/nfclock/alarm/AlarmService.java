@@ -18,6 +18,9 @@ public class AlarmService extends IntentService {
     public static final String ACTION_CREATE = "CREATE";
     public static final String ACTION_UPDATE = "UPDATE";
     public static final String ACTION_CANCEL = "CANCEL";
+    
+    //TODO set to 2 mins for debugging. change back to week
+    private final int WEEK_IN_MILLIS = 300000;
      
     private IntentFilter matcher;
  
@@ -37,31 +40,58 @@ public class AlarmService extends IntentService {
         }
     }
     
-	@SuppressLint("NewApi")
 	private void execute(String action, AlarmModel alarm) {
-    	Calendar calendar = Calendar.getInstance();
-    	calendar.set(Calendar.HOUR_OF_DAY, alarm.timeHour);
-    	calendar.set(Calendar.MINUTE, alarm.timeMinute);
+        if (ACTION_CREATE.equals(action) || ACTION_UPDATE.equals(action)) {
+        	for(int i=Calendar.SUNDAY; i<=Calendar.SATURDAY; i++) {
+        		if(alarm.getRepeatingDay(i))
+        			setAlarm(alarm, i);
+        	}
+        } else if (ACTION_UPDATE.equals(action)) {
+        	for(int i=Calendar.SUNDAY; i<=Calendar.SATURDAY; i++) {
+            	if(alarm.getRepeatingDay(i))
+            		setAlarm(alarm, i);
+            	else
+            		deleteAlarm(alarm, i);
+            }
+        } else if (ACTION_CANCEL.equals(action)) {
+        	for(int i=Calendar.SUNDAY; i<=Calendar.SATURDAY; i++) {
+            	if(alarm.getRepeatingDay(i))
+            		deleteAlarm(alarm, i);
+            }
+        }
+    }
+	
+	@SuppressLint("NewApi")
+	private void setAlarm(AlarmModel alarm, int dayOfWeek) {
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.DAY_OF_WEEK, dayOfWeek);
+    	calendar.set(Calendar.HOUR_OF_DAY, alarm.getTimeHour());
+    	calendar.set(Calendar.MINUTE, alarm.getTimeMinute());
     	long startTime = calendar.getTimeInMillis();
     	
-        AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+		AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(this, AlarmReceiver.class);
         i.putExtra(AlarmsActivity.EXTRA_MODEL, alarm);
         //pass in id as unique request code
-        PendingIntent pi = PendingIntent.getBroadcast(this, ((Long)(alarm.id)).intValue(), i, PendingIntent.FLAG_UPDATE_CURRENT);
-        //as of now, update and create are same. pendingintents 
-        //with same request code (set by model id) are overwritten
-        if (ACTION_CREATE.equals(action) || ACTION_UPDATE.equals(action)) {
-        	//TODO update didn't work
+        PendingIntent pi = PendingIntent.getBroadcast(this, alarm.getAlarmHash(dayOfWeek), i, PendingIntent.FLAG_UPDATE_CURRENT);
+        if(alarm.repeatsWeekly()) {
+    		am.setRepeating(AlarmManager.RTC_WAKEUP, startTime, WEEK_IN_MILLIS, pi);
+    	} else {
         	if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
-        		am.setExact(AlarmManager.RTC_WAKEUP, startTime, pi);
-        		//suppressing lint newapi error here
+    			am.setExact(AlarmManager.RTC_WAKEUP, startTime, pi);
         	} else {
         		am.set(AlarmManager.RTC_WAKEUP, startTime, pi);
         	}
-        } else if (ACTION_CANCEL.equals(action)) {
-            am.cancel(pi);
-        }
-    }
+    	}
+	}
+	
+	private void deleteAlarm(AlarmModel alarm, int dayOfWeek) {
+		AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
+        Intent i = new Intent(this, AlarmReceiver.class);
+        i.putExtra(AlarmsActivity.EXTRA_MODEL, alarm);
+        //pass in id as unique request code
+        PendingIntent pi = PendingIntent.getBroadcast(this, alarm.getAlarmHash(dayOfWeek), i, PendingIntent.FLAG_UPDATE_CURRENT);
+        am.cancel(pi);
+	}
       
 }

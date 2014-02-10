@@ -3,6 +3,7 @@ package com.ryanchipman.nfclock;
 import android.app.Activity;
 import android.content.Intent;
 import android.media.RingtoneManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.Menu;
@@ -74,12 +75,12 @@ public class AlarmDetailActivity extends Activity {
 		} else {
 			alarmDetails = dbHelper.getAlarm(id);
 
-			timePicker.setCurrentMinute(alarmDetails.timeMinute);
-			timePicker.setCurrentHour(alarmDetails.timeHour);
+			timePicker.setCurrentMinute(alarmDetails.getTimeMinute());
+			timePicker.setCurrentHour(alarmDetails.getTimeHour());
 
-			edtName.setText(alarmDetails.name);
+			edtName.setText(alarmDetails.getName());
 
-			chkWeekly.setChecked(alarmDetails.repeatWeekly);
+			chkWeekly.setChecked(alarmDetails.repeatsWeekly());
 			chkSunday.setChecked(alarmDetails.getRepeatingDay(AlarmModel.SUNDAY));
 			chkMonday.setChecked(alarmDetails.getRepeatingDay(AlarmModel.MONDAY));
 			chkTuesday.setChecked(alarmDetails.getRepeatingDay(AlarmModel.TUESDAY));
@@ -88,7 +89,7 @@ public class AlarmDetailActivity extends Activity {
 			chkFriday.setChecked(alarmDetails.getRepeatingDay(AlarmModel.FRDIAY));
 			chkSaturday.setChecked(alarmDetails.getRepeatingDay(AlarmModel.SATURDAY));
 
-			txtToneSelection.setText(RingtoneManager.getRingtone(this, alarmDetails.alarmTone).getTitle(this));
+			txtToneSelection.setText(RingtoneManager.getRingtone(this, alarmDetails.getAlarmTone()).getTitle(this));
 		}
 	}
 
@@ -122,9 +123,9 @@ public class AlarmDetailActivity extends Activity {
 			return true;
 		case R.id.action_save_alarm_details:
 			updateModelFromLayout();
-			if (alarmDetails.id < 0) {
+			if (alarmDetails.getID() < 0) {
 				long key = dbHelper.createAlarm(alarmDetails);
-				alarmDetails.id = key;
+				alarmDetails.setID(key);
 				Intent i = new Intent(this, AlarmService.class);
 				i.setAction(AlarmService.ACTION_CREATE);
 				i.putExtra(AlarmsActivity.EXTRA_MODEL, alarmDetails);
@@ -149,9 +150,9 @@ public class AlarmDetailActivity extends Activity {
 		if (resultCode == RESULT_OK) {
 	        switch (requestCode) {
 		        case 1: {
-		        	alarmDetails.alarmTone = data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI);
+		        	alarmDetails.setAlarmTone((Uri) data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI));
 		        	TextView txtToneSelection = (TextView) findViewById(R.id.alarm_label_tone_selection);
-		        	txtToneSelection.setText(RingtoneManager.getRingtone(this, alarmDetails.alarmTone).getTitle(this));
+		        	txtToneSelection.setText(RingtoneManager.getRingtone(this, alarmDetails.getAlarmTone()).getTitle(this));
 		            break;
 		        }
 		        default: {
@@ -163,14 +164,14 @@ public class AlarmDetailActivity extends Activity {
 	
 	private void updateModelFromLayout() {
 		TimePicker timePicker = (TimePicker) findViewById(R.id.alarm_details_time_picker);
-		alarmDetails.timeMinute = timePicker.getCurrentMinute().intValue();
-		alarmDetails.timeHour = timePicker.getCurrentHour().intValue();
+		alarmDetails.setTimeMinute(timePicker.getCurrentMinute().intValue());
+		alarmDetails.setTimeHour(timePicker.getCurrentHour().intValue());
 
 		EditText edtName = (EditText) findViewById(R.id.alarm_details_name);
-		alarmDetails.name = edtName.getText().toString();
+		alarmDetails.setName(edtName.getText().toString());
 
 		CustomToggleButton chkWeekly = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_weekly);
-		alarmDetails.repeatWeekly = chkWeekly.isChecked();
+		alarmDetails.setRepeatWeekly(chkWeekly.isChecked());
 
 		CustomToggleButton chkSunday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_sunday);
 		alarmDetails.setRepeatingDay(AlarmModel.SUNDAY, chkSunday.isChecked());
@@ -193,6 +194,6 @@ public class AlarmDetailActivity extends Activity {
 		CustomToggleButton chkSaturday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_saturday);
 		alarmDetails.setRepeatingDay(AlarmModel.SATURDAY, chkSaturday.isChecked());
 
-		alarmDetails.isEnabled = true;
+		alarmDetails.setEnabled(true);
 	}
 }

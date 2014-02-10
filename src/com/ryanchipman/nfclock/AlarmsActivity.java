@@ -1,7 +1,5 @@
 package com.ryanchipman.nfclock;
 
-import java.util.List;
-
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
@@ -58,7 +56,7 @@ public class AlarmsActivity extends ListActivity {
 	
 	public void setAlarmEnabled(long id, boolean isEnabled) {
 		AlarmModel model = dbHelper.getAlarm(id);
-		model.isEnabled = isEnabled;
+		model.setEnabled(isEnabled);
 		dbHelper.updateAlarm(model);
 	}
 	
