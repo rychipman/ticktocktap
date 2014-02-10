@@ -13,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.TimePicker;
+import android.widget.Toast;
 
 import com.ryanchipman.nfclock.alarm.AlarmService;
 import com.ryanchipman.nfclock.model.AlarmDBHelper;
@@ -122,23 +123,25 @@ public class AlarmDetailActivity extends Activity {
 			NavUtils.navigateUpFromSameTask(this);
 			return true;
 		case R.id.action_save_alarm_details:
-			updateModelFromLayout();
-			if (alarmDetails.getID() < 0) {
-				long key = dbHelper.createAlarm(alarmDetails);
-				alarmDetails.setID(key);
-				Intent i = new Intent(this, AlarmService.class);
-				i.setAction(AlarmService.ACTION_CREATE);
-				i.putExtra(AlarmsActivity.EXTRA_MODEL, alarmDetails);
-				startService(i);
-			} else {
-				dbHelper.updateAlarm(alarmDetails);
-				Intent i = new Intent(this, AlarmService.class);
-				i.setAction(AlarmService.ACTION_UPDATE);
-				i.putExtra(AlarmsActivity.EXTRA_MODEL, alarmDetails);
-				startService(i);
+			if(verifyUserInput()) {
+				updateModelFromLayout();
+				if (alarmDetails.getID() < 0) {
+					long key = dbHelper.createAlarm(alarmDetails);
+					alarmDetails.setID(key);
+					Intent i = new Intent(this, AlarmService.class);
+					i.setAction(AlarmService.ACTION_CREATE);
+					i.putExtra(AlarmsActivity.EXTRA_MODEL, alarmDetails);
+					startService(i);
+				} else {
+					dbHelper.updateAlarm(alarmDetails);
+					Intent i = new Intent(this, AlarmService.class);
+					i.setAction(AlarmService.ACTION_UPDATE);
+					i.putExtra(AlarmsActivity.EXTRA_MODEL, alarmDetails);
+					startService(i);
+				}
+				setResult(RESULT_OK);
+	            finish();
 			}
-			setResult(RESULT_OK);
-            finish();
 		}
 		return super.onOptionsItemSelected(item);
 	}
@@ -149,17 +152,24 @@ public class AlarmDetailActivity extends Activity {
 
 		if (resultCode == RESULT_OK) {
 	        switch (requestCode) {
-		        case 1: {
+		        case 1: 
 		        	alarmDetails.setAlarmTone((Uri) data.getParcelableExtra(RingtoneManager.EXTRA_RINGTONE_PICKED_URI));
 		        	TextView txtToneSelection = (TextView) findViewById(R.id.alarm_label_tone_selection);
 		        	txtToneSelection.setText(RingtoneManager.getRingtone(this, alarmDetails.getAlarmTone()).getTitle(this));
 		            break;
-		        }
-		        default: {
+		        default:
 		            break;
-		        }
 	        }
 	    }
+	}
+	
+	private boolean verifyUserInput() {
+		if(alarmDetails.getAlarmTone() == null) {
+			Toast t = Toast.makeText(this, R.string.details_missing_ringtone, Toast.LENGTH_SHORT);
+			t.show();
+			return false;
+		}
+		return true;
 	}
 	
 	private void updateModelFromLayout() {
@@ -175,25 +185,12 @@ public class AlarmDetailActivity extends Activity {
 
 		CustomToggleButton chkSunday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_sunday);
 		alarmDetails.setRepeatingDay(AlarmModel.SUNDAY, chkSunday.isChecked());
-
-		CustomToggleButton chkMonday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_monday);
 		alarmDetails.setRepeatingDay(AlarmModel.MONDAY, chkMonday.isChecked());
-
-		CustomToggleButton chkTuesday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_tuesday);
 		alarmDetails.setRepeatingDay(AlarmModel.TUESDAY, chkTuesday.isChecked());
-
-		CustomToggleButton chkWednesday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_wednesday);
 		alarmDetails.setRepeatingDay(AlarmModel.WEDNESDAY, chkWednesday.isChecked());
-
-		CustomToggleButton chkThursday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_thursday);
 		alarmDetails.setRepeatingDay(AlarmModel.THURSDAY, chkThursday.isChecked());
-
-		CustomToggleButton chkFriday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_friday);
 		alarmDetails.setRepeatingDay(AlarmModel.FRDIAY, chkFriday.isChecked());
-
-		CustomToggleButton chkSaturday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_saturday);
 		alarmDetails.setRepeatingDay(AlarmModel.SATURDAY, chkSaturday.isChecked());
-
 		alarmDetails.setEnabled(true);
 	}
 }
