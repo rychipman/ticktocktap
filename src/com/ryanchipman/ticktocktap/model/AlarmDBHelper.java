@@ -57,8 +57,8 @@ public class AlarmDBHelper extends SQLiteOpenHelper {
 		model.setEnabled(c.getInt(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_ENABLED)) == 0 ? false : true);
 
 		String[] repeatingDays = c.getString(c.getColumnIndex(Alarm.COLUMN_NAME_ALARM_REPEAT_DAYS)).split(",");
-		for (int i = AlarmModel.SUNDAY; i < repeatingDays.length; ++i) {
-			model.setRepeatingDay(i, repeatingDays[i].equals("false") ? false : true);
+		for (int i = AlarmModel.SUNDAY; i < repeatingDays.length; i++) {
+			model.setRepeatingDay(i, repeatingDays[i-1].equals("false") ? false : true);
 		}
 
 		return model;

@@ -174,17 +174,12 @@ public class AlarmDetailActivity extends Activity {
 	}
 	
 	private void updateModelFromLayout() {
-		TimePicker timePicker = (TimePicker) findViewById(R.id.alarm_details_time_picker);
 		alarmDetails.setTimeMinute(timePicker.getCurrentMinute().intValue());
 		alarmDetails.setTimeHour(timePicker.getCurrentHour().intValue());
-
-		EditText edtName = (EditText) findViewById(R.id.alarm_details_name);
 		alarmDetails.setName(edtName.getText().toString());
-
-		CustomToggleButton chkWeekly = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_weekly);
+		
 		alarmDetails.setRepeatWeekly(chkWeekly.isChecked());
 
-		CustomToggleButton chkSunday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_sunday);
 		alarmDetails.setRepeatingDay(AlarmModel.SUNDAY, chkSunday.isChecked());
 		alarmDetails.setRepeatingDay(AlarmModel.MONDAY, chkMonday.isChecked());
 		alarmDetails.setRepeatingDay(AlarmModel.TUESDAY, chkTuesday.isChecked());

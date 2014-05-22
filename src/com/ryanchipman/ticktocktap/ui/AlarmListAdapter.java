@@ -81,7 +81,6 @@ public class AlarmListAdapter extends BaseAdapter {
 		
 		view.setTag(Long.valueOf(model.getID()));
 		view.setOnClickListener(new OnClickListener() {
-
 			@Override
 			public void onClick(View view) {
 				((AlarmsActivity) mContext).startAlarmDetailActivity(((Long) view.getTag()).longValue());
