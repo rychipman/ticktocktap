@@ -2,10 +2,14 @@ package com.ryanchipman.ticktocktap.alarm;
 
 import java.io.IOException;
 
+import com.ryanchipman.ticktocktap.AlarmDismissActivity;
 import com.ryanchipman.ticktocktap.AlarmsActivity;
+import com.ryanchipman.ticktocktap.R;
 import com.ryanchipman.ticktocktap.model.AlarmModel;
 
 import android.app.IntentService;
+import android.app.Notification;
+import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Intent;
 import android.content.IntentFilter;
@@ -14,6 +18,7 @@ import android.media.MediaPlayer;
 import android.media.MediaPlayer.OnErrorListener;
 import android.net.Uri;
 import android.os.IBinder;
+import android.support.v4.app.NotificationCompat;
 
 public class RingerService extends Service {
 
@@ -42,6 +47,7 @@ public class RingerService extends Service {
     }
 	
 	private void play(Uri alarmTone) {
+		
 		//TODO: test dealing with stopping previous alarm if it is sounding
 		mp = new MediaPlayer();
 		mp.setOnErrorListener(new OnErrorListener() {

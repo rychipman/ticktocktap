@@ -7,7 +7,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_alarms">AlarmsActivity</string>
     <string name="title_activity_alarm_detail">AlarmDetailActivity</string>
-    
     <string name="details_alarm_name">Alarm Name</string>
     <string name="details_repeat_weekly">Repeat Weekly</string>
     <string name="details_sunday">Sunday</string>
@@ -19,6 +18,7 @@
     <string name="details_saturday">Saturday</string>
     <string name="details_alarm_tone">Alarm Tone</string>
     <string name="details_alarm_tone_default">Select an alarm tone</string>
-    <string name="details_missing_ringtone">Please select an alarm tone</string> 
+    <string name="details_missing_ringtone">Please select an alarm tone</string>
+    <string name="title_activity_alarm_dismiss">AlarmDismissActivity</string>
 
 </resources>

@@ -32,7 +32,6 @@ public class AlarmReceiver extends BroadcastReceiver {
     	.setAutoCancel(false)
     	.setPriority(Notification.PRIORITY_MAX)
     	.setDefaults(Notification.DEFAULT_LIGHTS)
-    	
     	.setContentTitle("Alarm Title Here")
     	.setContentText("Wake up! This is an alarm!")
     	.setSmallIcon(R.drawable.ic_launcher)
