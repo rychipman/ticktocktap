@@ -1,14 +1,11 @@
 package com.ryanchipman.ticktocktap.alarm;
 
-import java.io.IOException;
-
 import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.support.v4.app.NotificationCompat;
 
@@ -19,9 +16,8 @@ import com.ryanchipman.ticktocktap.model.AlarmModel;
 
 public class AlarmReceiver extends BroadcastReceiver {
 	
-	private static final MediaPlayer mp = new MediaPlayer();
-	private static NotificationManager nm; //TODO: some bug with this being null when I go to dismiss notification...
-	private static final int NOTIFICATION_ID = 11132011;
+	private NotificationManager nm;
+	public static final int NOTIFICATION_ID = 11132011;
  
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -35,6 +31,8 @@ public class AlarmReceiver extends BroadcastReceiver {
     	.setOngoing(true)
     	.setAutoCancel(false)
     	.setPriority(Notification.PRIORITY_MAX)
+    	.setDefaults(Notification.DEFAULT_LIGHTS)
+    	
     	.setContentTitle("Alarm Title Here")
     	.setContentText("Wake up! This is an alarm!")
     	.setSmallIcon(R.drawable.ic_launcher)
@@ -42,29 +40,10 @@ public class AlarmReceiver extends BroadcastReceiver {
     	.build();
         nm.notify(NOTIFICATION_ID, notif);
         
-        //TODO: test dealing with stopping previous alarm if it is sounding
-        try {
-        	if(mp.isPlaying()) {
-        		mp.stop();
-        		mp.reset();
-        	}
-	        mp.setAudioStreamType(AudioManager.STREAM_ALARM);
-	        mp.setDataSource(context, alarm.getAlarmTone());
-	        System.out.println("After SETDATASOURCE");
-	        mp.prepare();
-	        System.out.println("After PREPARE");
-	        mp.start(); 
-        } catch(IOException ioe) { 
-        	ioe.printStackTrace();//TODO: get some better error handling
-        }
-    }
-    
-    public static void dismissAlarms() {
-    	if(mp.isPlaying()) {
-    		mp.stop();
-    		mp.reset();
-    	}
-    	nm.cancel(NOTIFICATION_ID);
+        Intent i = new Intent(context, RingerService.class);
+		i.setAction(RingerService.ACTION_START);
+		i.putExtra(AlarmsActivity.EXTRA_MODEL, alarm);
+		context.startService(i);
     }
     
     //TODO: prevent closing app from stopping alarm

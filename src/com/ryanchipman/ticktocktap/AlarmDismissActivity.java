@@ -1,13 +1,17 @@
 package com.ryanchipman.ticktocktap;
 
-import com.ryanchipman.ticktocktap.alarm.AlarmReceiver;
-
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+
+import com.ryanchipman.ticktocktap.alarm.AlarmReceiver;
+import com.ryanchipman.ticktocktap.alarm.RingerService;
 
 public class AlarmDismissActivity extends Activity {
 
@@ -20,7 +24,10 @@ public class AlarmDismissActivity extends Activity {
 		b.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				AlarmReceiver.dismissAlarms();
+				Intent i = new Intent(v.getContext(), RingerService.class);
+				i.setAction(RingerService.ACTION_STOP);
+				v.getContext().startService(i);
+		    	((NotificationManager) v.getContext().getSystemService(Context.NOTIFICATION_SERVICE)).cancel(AlarmReceiver.NOTIFICATION_ID);
 				finish();
 			}
 		});

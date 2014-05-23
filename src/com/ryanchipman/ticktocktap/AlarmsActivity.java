@@ -26,6 +26,18 @@ public class AlarmsActivity extends ListActivity {
 		mAdapter = new AlarmListAdapter(this, dbHelper.getAlarms());
 		setListAdapter(mAdapter);
 	}
+	
+	@Override
+	protected void onPause() {
+		super.onPause();
+//		finish();
+	}
+	
+	@Override
+	protected void onStop() {
+		super.onStop();
+//		finish();
+	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
