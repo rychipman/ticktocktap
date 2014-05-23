@@ -22,7 +22,7 @@ public class AlarmService extends IntentService {
     public static final String ACTION_CANCEL = "CANCEL";
     
     //TODO set to 2 mins for debugging. change back to week
-    private final int WEEK_IN_MILLIS = 300000;
+    private final int WEEK_IN_MILLIS = 604800000;
      
     private IntentFilter matcher;
  
@@ -43,6 +43,7 @@ public class AlarmService extends IntentService {
     }
     
 	private void execute(String action, AlarmModel alarm) {
+		//TODO: Updating alarms that have already passed does not work!!
         if (ACTION_CREATE.equals(action) || ACTION_UPDATE.equals(action)) {
         	for(int i=Calendar.SUNDAY; i<=Calendar.SATURDAY; i++) {
         		if(alarm.getRepeatingDay(i))
@@ -69,7 +70,10 @@ public class AlarmService extends IntentService {
 		calendar.set(Calendar.DAY_OF_WEEK, dayOfWeek);
     	calendar.set(Calendar.HOUR_OF_DAY, alarm.getTimeHour());
     	calendar.set(Calendar.MINUTE, alarm.getTimeMinute());
+    	calendar.set(Calendar.SECOND, 0);
     	long startTime = calendar.getTimeInMillis();
+    	if(startTime < Calendar.getInstance().getTimeInMillis())
+    		startTime += WEEK_IN_MILLIS;
     	
 		AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(this, AlarmReceiver.class);

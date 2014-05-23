@@ -71,6 +71,7 @@ public class AlarmDBHelper extends SQLiteOpenHelper {
 		values.put(Alarm.COLUMN_NAME_ALARM_TIME_MINUTE, model.getTimeMinute());
 		values.put(Alarm.COLUMN_NAME_ALARM_REPEAT_WEEKLY, model.repeatsWeekly());
 		values.put(Alarm.COLUMN_NAME_ALARM_TONE, model.getAlarmTone().toString());
+		values.put(Alarm.COLUMN_NAME_ALARM_ENABLED, model.isEnabled());
 
 		String repeatingDays = "";
 		for (int i = AlarmModel.SUNDAY; i <= AlarmModel.SATURDAY; ++i) {
