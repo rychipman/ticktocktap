@@ -33,12 +33,5 @@ public class AlarmReceiver extends BroadcastReceiver {
          
         nm.notify(1212, notif);
     }
-    
-    //TODO: make it so alarm notifications dont shut of when screen tapped
-    
-    private void disable(AlarmModel alarm) {
-    	//TODO: check if future alarms exist. if not, disable this alarm
-    	alarm.setEnabled(false);
-    }
- 
+    //TODO: make it so alarm notifications dont shut of when screen tapped 
 }

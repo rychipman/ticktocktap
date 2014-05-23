@@ -20,7 +20,7 @@ public class AlarmModel implements Parcelable{
 
 	private long id;
 	private int[] hashes;
-	private int timeHour; //TODO: look into representing this as just a date or timemillis object
+	private int timeHour;
 	private int timeMinute;
 	private boolean repeatingDays[];//which days the alarm repeats
 	private boolean repeatWeekly;//does it repeat weekly?
@@ -108,7 +108,6 @@ public class AlarmModel implements Parcelable{
 		return repeatWeekly;
 	}
 	
-	//TODO: rep exposure?
 	public void setAlarmTone(Uri tone) {
 		this.alarmTone = tone;
 	}

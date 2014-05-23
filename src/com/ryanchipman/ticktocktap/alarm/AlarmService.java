@@ -20,8 +20,6 @@ public class AlarmService extends IntentService {
     public static final String ACTION_CREATE = "CREATE";
     public static final String ACTION_UPDATE = "UPDATE";
     public static final String ACTION_CANCEL = "CANCEL";
-    
-    //TODO set to 2 mins for debugging. change back to week
     private final int WEEK_IN_MILLIS = 604800000;
      
     private IntentFilter matcher;
@@ -44,7 +42,6 @@ public class AlarmService extends IntentService {
     }
     
 	private void execute(String action, AlarmModel alarm) {
-		//TODO: Updating alarms that have already passed does not work!!
         if (ACTION_CREATE.equals(action)) {
         	for(int i=Calendar.SUNDAY; i<=Calendar.SATURDAY; i++) {
         		if(alarm.getRepeatingDay(i))

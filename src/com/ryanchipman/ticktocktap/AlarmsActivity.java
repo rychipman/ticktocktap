@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import com.ryanchipman.ticktocktap.R;
+import com.ryanchipman.ticktocktap.alarm.AlarmService;
 import com.ryanchipman.ticktocktap.model.AlarmDBHelper;
 import com.ryanchipman.ticktocktap.model.AlarmModel;
 import com.ryanchipman.ticktocktap.ui.AlarmListAdapter;
@@ -59,6 +59,13 @@ public class AlarmsActivity extends ListActivity {
 		AlarmModel model = dbHelper.getAlarm(id);
 		model.setEnabled(isEnabled);
 		dbHelper.updateAlarm(model);
+		Intent i = new Intent(this, AlarmService.class);
+		if(isEnabled)
+			i.setAction(AlarmService.ACTION_CREATE);
+		else
+			i.setAction(AlarmService.ACTION_CANCEL);
+		i.putExtra(AlarmsActivity.EXTRA_MODEL, model);
+		startService(i);
 	}
 	
 	public void startAlarmDetailActivity(long id) {
