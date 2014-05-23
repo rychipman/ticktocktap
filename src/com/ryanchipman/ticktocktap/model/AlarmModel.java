@@ -1,5 +1,7 @@
 package com.ryanchipman.ticktocktap.model;
 
+import java.util.Calendar;
+
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
@@ -35,7 +37,7 @@ public class AlarmModel implements Parcelable{
 	public AlarmModel(long id) {
 		this.id = id;
 		repeatingDays = new boolean[7];
-		hashes = new int[7];
+		hashes = new int[8];
 	}
 	
 	/**
@@ -46,7 +48,7 @@ public class AlarmModel implements Parcelable{
 	public AlarmModel(Parcel pc) {
 		//don't change the order of these! must be same as when parceled
 		id = pc.readLong();
-		hashes = new int[7];
+		hashes = new int[8];
 		pc.readIntArray(hashes);
 		timeHour = pc.readInt();
 		timeMinute = pc.readInt();
@@ -64,7 +66,7 @@ public class AlarmModel implements Parcelable{
 	public AlarmModel() {
 		id = -1;
 		repeatingDays = new boolean[7];
-		hashes = new int[7];
+		hashes = new int[8];
 	}
 
 	public void setRepeatingDay(int dayOfWeek, boolean value) {
@@ -137,9 +139,38 @@ public class AlarmModel implements Parcelable{
 		//bacause sunday is 1 and saturday is 8
 	}
 	
+	public long getTimeInMillis() {
+		if(repeatWeekly)
+			throw new RuntimeException("Cannot access non-repeating alarm time for repeating alarm");
+		int DAY_IN_MILLIS = 86400000;
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.HOUR_OF_DAY, getTimeHour());
+    	calendar.set(Calendar.MINUTE, getTimeMinute());
+    	calendar.set(Calendar.SECOND, 0);
+    	long startTime = calendar.getTimeInMillis();
+    	if(startTime < Calendar.getInstance().getTimeInMillis())
+    		startTime += DAY_IN_MILLIS;
+    	return startTime;
+	}
+	
+	public long getTimeInMillis(int dayOfWeek) {
+		if(!repeatWeekly)
+			throw new RuntimeException("Cannot access repeating alarm times for non-repeating alarm");
+		int WEEK_IN_MILLIS = 604800000;
+		Calendar calendar = Calendar.getInstance();
+		calendar.set(Calendar.DAY_OF_WEEK, dayOfWeek);
+    	calendar.set(Calendar.HOUR_OF_DAY, getTimeHour());
+    	calendar.set(Calendar.MINUTE, getTimeMinute());
+    	calendar.set(Calendar.SECOND, 0);
+    	long startTime = calendar.getTimeInMillis();
+    	if(startTime < Calendar.getInstance().getTimeInMillis())
+    		startTime += WEEK_IN_MILLIS;
+    	return startTime;
+	}
+	
 	private void createHashes() {
-		for(int i=0; i<7; i++) {
-			hashes[i] = 7*((Long) id).intValue() + i;
+		for(int i=0; i<8; i++) {
+			hashes[i] = 8*((Long) id).intValue() + i;
 		}
 	}
 	

@@ -21,6 +21,7 @@ public class AlarmService extends IntentService {
     public static final String ACTION_UPDATE = "UPDATE";
     public static final String ACTION_CANCEL = "CANCEL";
     private final int WEEK_IN_MILLIS = 604800000;
+    private final int NO_REPEAT = 8;
      
     private IntentFilter matcher;
  
@@ -43,36 +44,43 @@ public class AlarmService extends IntentService {
     
 	private void execute(String action, AlarmModel alarm) {
         if (ACTION_CREATE.equals(action)) {
-        	for(int i=Calendar.SUNDAY; i<=Calendar.SATURDAY; i++) {
-        		if(alarm.getRepeatingDay(i))
-        			setAlarm(alarm, i);
+        	if(!alarm.repeatsWeekly())
+        		setAlarm(alarm, NO_REPEAT);
+        	else {
+	        	for(int i=Calendar.SUNDAY; i<=Calendar.SATURDAY; i++) {
+	        		if(alarm.getRepeatingDay(i))
+	        			setAlarm(alarm, i);
+	        	}
         	}
         } else if (ACTION_UPDATE.equals(action)) {
-        	for(int i=Calendar.SUNDAY; i<=Calendar.SATURDAY; i++) {
-            	if(alarm.getRepeatingDay(i))
-            		setAlarm(alarm, i);
-            	else
-            		deleteAlarm(alarm, i);
-            }
+        	if(!alarm.repeatsWeekly()) {
+        		setAlarm(alarm, NO_REPEAT);
+        		for(int i=Calendar.SUNDAY; i<=Calendar.SATURDAY; i++)
+        			deleteAlarm(alarm,i);
+        	} else {
+        		for(int i=Calendar.SUNDAY; i<=Calendar.SATURDAY; i++) {
+	            	if(alarm.getRepeatingDay(i))
+	            		setAlarm(alarm, i);
+	            	else
+	            		deleteAlarm(alarm, i);
+	            }
+        	}
         } else if (ACTION_CANCEL.equals(action)) {
         	for(int i=Calendar.SUNDAY; i<=Calendar.SATURDAY; i++) {
             	if(alarm.getRepeatingDay(i))
             		deleteAlarm(alarm, i);
             }
+        	deleteAlarm(alarm, NO_REPEAT);
         }
     }
 	
 	@SuppressLint("NewApi")
 	private void setAlarm(AlarmModel alarm, int dayOfWeek) {
-		Calendar calendar = Calendar.getInstance();
-		calendar.set(Calendar.DAY_OF_WEEK, dayOfWeek);
-    	calendar.set(Calendar.HOUR_OF_DAY, alarm.getTimeHour());
-    	calendar.set(Calendar.MINUTE, alarm.getTimeMinute());
-    	calendar.set(Calendar.SECOND, 0);
-    	long startTime = calendar.getTimeInMillis();
-    	if(startTime < Calendar.getInstance().getTimeInMillis())
-    		startTime += WEEK_IN_MILLIS;
-    	
+		long startTime = 0;
+		if(alarm.repeatsWeekly())
+			startTime = alarm.getTimeInMillis(dayOfWeek);
+		else
+			startTime = alarm.getTimeInMillis();
 		AlarmManager am = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
         Intent i = new Intent(this, AlarmReceiver.class);
         i.putExtra(AlarmsActivity.EXTRA_MODEL, alarm);

@@ -1,5 +1,6 @@
 package com.ryanchipman.ticktocktap.alarm;
 
+import java.util.Calendar;
 import java.util.List;
 
 import android.content.BroadcastReceiver;
@@ -17,11 +18,16 @@ public class AlarmBootReceiver extends BroadcastReceiver {
 	@Override
 	public void onReceive(Context context, Intent intent) {
 		if(intent.getAction().equals("android.intent.action.BOOT_COMPLETED")) {
-			//TODO: Set the alarms(s)
 			AlarmDBHelper dbHelper = new AlarmDBHelper(context);
 			List<AlarmModel> alarms = dbHelper.getAlarms();
 			for(AlarmModel alarm : alarms) {
-				if(alarm.isEnabled()) {
+				boolean passed = false;
+				if(!alarm.repeatsWeekly()) {
+					long now = Calendar.getInstance().getTimeInMillis();
+					if(alarm.getTimeInMillis() <= now)
+						passed = true;
+				}
+				if(alarm.isEnabled() && !passed) {
 					Intent i = new Intent(context, AlarmService.class);
 					i.setAction(AlarmService.ACTION_CREATE);
 					i.putExtra(AlarmsActivity.EXTRA_MODEL, alarm);
