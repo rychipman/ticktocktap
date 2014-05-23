@@ -31,6 +31,7 @@ public class AlarmService extends IntentService {
         matcher = new IntentFilter();
         matcher.addAction(ACTION_CREATE);
         matcher.addAction(ACTION_CANCEL);
+        matcher.addAction(ACTION_UPDATE);
     }
  
     @Override
@@ -44,7 +45,7 @@ public class AlarmService extends IntentService {
     
 	private void execute(String action, AlarmModel alarm) {
 		//TODO: Updating alarms that have already passed does not work!!
-        if (ACTION_CREATE.equals(action) || ACTION_UPDATE.equals(action)) {
+        if (ACTION_CREATE.equals(action)) {
         	for(int i=Calendar.SUNDAY; i<=Calendar.SATURDAY; i++) {
         		if(alarm.getRepeatingDay(i))
         			setAlarm(alarm, i);
