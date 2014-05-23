@@ -8,9 +8,14 @@
         android:minSdkVersion="16"
         android:targetSdkVersion="19" />
 
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED"/>
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
+
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
-    
+    <uses-permission android:name="android.permission.NFC" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -18,6 +23,7 @@
         android:theme="@style/AppTheme" >
         <activity
             android:name="com.ryanchipman.ticktocktap.MainActivity"
+            android:excludeFromRecents="true"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,6 +31,7 @@
         </activity>
         <activity
             android:name="com.ryanchipman.ticktocktap.AlarmsActivity"
+            android:excludeFromRecents="true"
             android:label="@string/app_name" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -34,26 +41,48 @@
         </activity>
         <activity
             android:name="com.ryanchipman.ticktocktap.AlarmDetailActivity"
+            android:excludeFromRecents="true"
             android:label="@string/title_activity_alarm_detail"
             android:parentActivityName="com.ryanchipman.ticktocktap.AlarmsActivity" >
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.ryanchipman.nfclock.AlarmsActivity" />
         </activity>
+
         <receiver
-                  android:name=".alarm.AlarmBootReceiver"
-		          android:enabled="false">
-		    <intent-filter>
-		        <action android:name="android.intent.action.BOOT_COMPLETED"></action>
-		    </intent-filter>
-		</receiver>
-		<receiver
-		          android:name=".alarm.AlarmReceiver"
-		          android:enabled="true">
-		</receiver>
-        <service
-            android:name=".alarm.AlarmService">
+            android:name="com.ryanchipman.ticktocktap.alarm.AlarmBootReceiver"
+            android:enabled="true" >
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" >
+                </action>
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name="com.ryanchipman.ticktocktap.alarm.AlarmReceiver"
+            android:enabled="true" >
+        </receiver>
+
+        <service android:name="com.ryanchipman.ticktocktap.alarm.AlarmService" >
         </service>
+        <service android:name="com.ryanchipman.ticktocktap.alarm.RingerService" >
+        </service>
+
+        <activity
+            android:name="com.ryanchipman.ticktocktap.AlarmDismissActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/title_activity_alarm_dismiss" >
+        </activity>
+        <activity
+            android:name="com.ryanchipman.ticktocktap.NFCActivity"
+            android:label="@string/title_activity_nfc" >
+            <intent-filter>
+			    <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+			    <category android:name="android.intent.category.DEFAULT"/>
+				<data android:scheme="ttt"
+	               android:host="wakeup"
+	               android:pathPrefix="/now" />
+			</intent-filter>
+        </activity>
     </application>
 
 </manifest>

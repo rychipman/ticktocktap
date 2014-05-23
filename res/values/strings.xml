@@ -20,5 +20,6 @@
     <string name="details_alarm_tone_default">Select an alarm tone</string>
     <string name="details_missing_ringtone">Please select an alarm tone</string>
     <string name="title_activity_alarm_dismiss">AlarmDismissActivity</string>
+    <string name="title_activity_nfc">NFCActivity</string>
 
 </resources>
