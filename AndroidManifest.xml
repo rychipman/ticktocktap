@@ -71,17 +71,13 @@
             android:name="com.ryanchipman.ticktocktap.AlarmDismissActivity"
             android:excludeFromRecents="true"
             android:label="@string/title_activity_alarm_dismiss" >
-        </activity>
-        <activity
-            android:name="com.ryanchipman.ticktocktap.NFCActivity"
-            android:label="@string/title_activity_nfc" >
             <intent-filter>
-			    <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
-			    <category android:name="android.intent.category.DEFAULT"/>
-				<data android:scheme="ttt"
-	               android:host="wakeup"
-	               android:pathPrefix="/now" />
-			</intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+                <data android:scheme="ttt"
+                   android:host="wakeup"
+                   android:pathPrefix="/now" />
+            </intent-filter>
         </activity>
     </application>
 

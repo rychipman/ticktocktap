@@ -24,8 +24,6 @@ public class AlarmReceiver extends BroadcastReceiver {
     	
     	AlarmModel alarm = intent.getParcelableExtra(AlarmsActivity.EXTRA_MODEL);
     	
-    	PendingIntent delIntent = PendingIntent.getActivity(context, 0, new Intent(context, AlarmDismissActivity.class), 0);
-    	System.out.println("in ONRECEIVE!");
     	nm = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         Notification notif = new NotificationCompat.Builder(context)
     	.setOngoing(true)
@@ -35,7 +33,6 @@ public class AlarmReceiver extends BroadcastReceiver {
     	.setContentTitle("Alarm Title Here")
     	.setContentText("Wake up! This is an alarm!")
     	.setSmallIcon(R.drawable.ic_launcher)
-    	.setContentIntent(delIntent)
     	.build();
         nm.notify(NOTIFICATION_ID, notif);
         
@@ -44,6 +41,4 @@ public class AlarmReceiver extends BroadcastReceiver {
 		i.putExtra(AlarmsActivity.EXTRA_MODEL, alarm);
 		context.startService(i);
     }
-    
-    //TODO: prevent closing app from stopping alarm
 }
