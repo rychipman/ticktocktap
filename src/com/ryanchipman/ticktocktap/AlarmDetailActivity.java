@@ -10,12 +10,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.TimePicker;
 import android.widget.Toast;
 
-import com.ryanchipman.ticktocktap.R;
 import com.ryanchipman.ticktocktap.alarm.AlarmService;
 import com.ryanchipman.ticktocktap.model.AlarmDBHelper;
 import com.ryanchipman.ticktocktap.model.AlarmModel;
@@ -29,6 +31,7 @@ public class AlarmDetailActivity extends Activity {
 	
 	private TimePicker timePicker;
 	private EditText edtName;
+	private RelativeLayout repeatDayContainer;
 	private CustomToggleButton chkWeekly;
 	private CustomToggleButton chkSunday;
 	private CustomToggleButton chkMonday;
@@ -50,6 +53,7 @@ public class AlarmDetailActivity extends Activity {
 		
 		timePicker = (TimePicker) findViewById(R.id.alarm_details_time_picker);
 		edtName = (EditText) findViewById(R.id.alarm_details_name);
+		repeatDayContainer = (RelativeLayout) findViewById(R.id.alarm_details_repeat_day_container);
 		chkWeekly = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_weekly);
 		chkSunday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_sunday);
 		chkMonday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_monday);
@@ -59,6 +63,17 @@ public class AlarmDetailActivity extends Activity {
 		chkFriday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_friday);
 		chkSaturday = (CustomToggleButton) findViewById(R.id.alarm_details_repeat_saturday);
 		txtToneSelection = (TextView) findViewById(R.id.alarm_label_tone_selection);
+		
+		chkWeekly.setOnCheckedChangedListener(new CompoundButton.OnCheckedChangeListener() {
+			@Override
+			public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+				ViewGroup vg = (ViewGroup) findViewById(R.id.alarm_details_repeat_container);
+				if(isChecked)
+					vg.addView(repeatDayContainer);
+				else
+					vg.removeView(repeatDayContainer);
+			}
+		});
 		
 		final View ringToneContainer = findViewById(R.id.alarm_ringtone_container);
 		ringToneContainer.setOnClickListener(new OnClickListener() {
@@ -83,6 +98,10 @@ public class AlarmDetailActivity extends Activity {
 			edtName.setText(alarmDetails.getName());
 
 			chkWeekly.setChecked(alarmDetails.repeatsWeekly());
+			if(!alarmDetails.repeatsWeekly()) {
+				ViewGroup vg = (ViewGroup) findViewById(R.id.alarm_details_repeat_container);
+				vg.removeView(repeatDayContainer);
+			}
 			chkSunday.setChecked(alarmDetails.getRepeatingDay(AlarmModel.SUNDAY));
 			chkMonday.setChecked(alarmDetails.getRepeatingDay(AlarmModel.MONDAY));
 			chkTuesday.setChecked(alarmDetails.getRepeatingDay(AlarmModel.TUESDAY));
