@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- ###### PREFERENCE ARRAYS ####### -->
+
+    <string-array name="pref_colorScheme_entries">
+        <item>Dark</item>
+        <item>Light</item>
+        <item>Custom</item>
+    </string-array>
+    <string-array name="pref_colorScheme_values">
+        <item>PREF_THEME_DARK</item>
+        <item>PREF_THEME_LIGHT</item>
+        <item>PREF_THEME_CUSTOM</item>
+    </string-array>
+
+    <string-array name="pref_silenceAfter_entries">
+        <item>5 minutes</item>
+        <item>10 minutes</item>
+        <item>20 minutes</item>
+        <item>Never</item>
+    </string-array>
+    <string-array name="pref_silenceAfter_values">
+        <item>PREF_SILENCE_AFTER_5</item>
+        <item>PREF_SILENCE_AFTER_10</item>
+        <item>PREF_SILENCE_AFTER_20</item>
+        <item>PREF_SILENCE_AFTER_NEVER</item>
+    </string-array>
+
+    <string-array name="pref_fadeIn_entries">
+        <item>None</item>
+        <item>15 seconds</item>
+        <item>30 seconds</item>
+        <item>1 minute</item>
+        <item>2 minutes</item>
+        <item>3 minutes</item>
+        <item>4 minutes</item>
+        <item>5 minutes</item>
+    </string-array>
+    <string-array name="pref_fadeIn_values">
+        <item>PREF_FADEIN_NONE</item>
+        <item>PREF_FADEIN_15</item>
+        <item>PREF_FADEIN_30</item>
+        <item>PREF_FADEIN_1</item>
+        <item>PREF_FADEIN_2</item>
+        <item>PREF_FADEIN_3</item>
+        <item>PREF_FADEIN_4</item>
+        <item>PREF_FADEIN_5</item>
+    </string-array>
+
+    <string-array name="pref_numSnoozes_entries">
+        <item>None</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>10</item>
+        <item>No Limit</item>
+    </string-array>
+    <string-array name="pref_numSnoozes_values">
+        <item>PREF_NUM_SNOOZES_NONE</item>
+        <item>PREF_NUM_SNOOZES_1</item>
+        <item>PREF_NUM_SNOOZES_2</item>
+        <item>PREF_NUM_SNOOZES_3</item>
+        <item>PREF_NUM_SNOOZES_4</item>
+        <item>PREF_NUM_SNOOZES_5</item>
+        <item>PREF_NUM_SNOOZES_10</item>
+        <item>PREF_NUM_SNOOZES_NO_LIMIT</item>
+    </string-array>
+
+    <string-array name="pref_snoozeLength_entries">
+        <item>2 minutes</item>
+        <item>5 minutes</item>
+        <item>6 minutes</item>
+        <item>7 minutes</item>
+        <item>8 minutes</item>
+        <item>9 minutes</item>
+        <item>10 minutes</item>
+        <item>20 minutes</item>
+        <item>30 minutes</item>
+    </string-array>
+    <string-array name="pref_snoozeLength_values">
+        <item>PREF_SNOOZE_LENGTH_2</item>
+        <item>PREF_SNOOZE_LENGTH_5</item>
+        <item>PREF_SNOOZE_LENGTH_6</item>
+        <item>PREF_SNOOZE_LENGTH_7</item>
+        <item>PREF_SNOOZE_LENGTH_8</item>
+        <item>PREF_SNOOZE_LENGTH_9</item>
+        <item>PREF_SNOOZE_LENGTH_10</item>
+        <item>PREF_SNOOZE_LENGTH_20</item>
+        <item>PREF_SNOOZE_LENGTH_30</item>
+    </string-array>
+
+    <string-array name="pref_alarmVolume_entries">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
+    </string-array>
+    <string-array name="pref_alarmVolume_values">
+        <item>PREF_ALARM_VOLUME_1</item>
+        <item>PREF_ALARM_VOLUME_2</item>
+        <item>PREF_ALARM_VOLUME_3</item>
+        <item>PREF_ALARM_VOLUME_4</item>
+        <item>PREF_ALARM_VOLUME_5</item>
+        <item>PREF_ALARM_VOLUME_6</item>
+        <item>PREF_ALARM_VOLUME_7</item>
+        <item>PREF_ALARM_VOLUME_8</item>
+        <item>PREF_ALARM_VOLUME_9</item>
+    </string-array>
+  
+</resources>

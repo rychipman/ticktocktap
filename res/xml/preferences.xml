@@ -1,0 +1,85 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+    
+    <PreferenceCategory
+        android:title="Interface"
+        android:key="pref_key_interface_settings" >
+        <ListPreference 
+            android:key="pref_key_colorScheme"
+            android:title="@string/pref_colorScheme"
+            android:dialogTitle="@string/pref_colorScheme" 
+            android:entries="@array/pref_colorScheme_entries"
+            android:entryValues="@array/pref_colorScheme_values"
+            android:defaultValue="@string/pref_colorScheme_default" />              
+    </PreferenceCategory>
+    
+    <PreferenceCategory 
+        android:title="Alarm"
+        android:key="pref_key_alarm_settings" >
+        <ListPreference 
+            android:key="pref_key_silenceAfter"
+            android:title="@string/pref_silenceAfter"
+            android:dialogTitle="@string/pref_silenceAfter" 
+            android:entries="@array/pref_silenceAfter_entries"
+            android:entryValues="@array/pref_silenceAfter_values"
+            android:defaultValue="@string/pref_silenceAfter_default" />
+        <ListPreference 
+            android:key="pref_key_fadeIn"
+            android:title="@string/pref_fadeIn"
+            android:dialogTitle="@string/pref_fadeIn" 
+            android:entries="@array/pref_fadeIn_entries"
+            android:entryValues="@array/pref_fadeIn_values"
+            android:defaultValue="@string/pref_fadeIn_default" />
+        <PreferenceScreen
+            android:key="pref_sub_snooze"
+            android:persistent="false" >
+            <ListPreference 
+                android:key="pref_key_numSnoozes"
+                android:title="@string/pref_numSnoozes"
+                android:dialogTitle="@string/pref_numSnoozes" 
+                android:entries="@array/pref_numSnoozes_entries"
+                android:entryValues="@array/pref_numSnoozes_values"
+                android:defaultValue="@string/pref_numSnoozes_default" />
+            <ListPreference 
+                android:key="pref_key_snoozeLength"
+                android:title="@string/pref_snoozeLength"
+                android:dialogTitle="@string/pref_snoozeLength" 
+                android:entries="@array/pref_snoozeLength_entries"
+                android:entryValues="@array/pref_snoozeLength_values"
+                android:defaultValue="@string/pref_snoozeLength_default" />
+        </PreferenceScreen>
+        <PreferenceScreen
+            android:key="pref_sub_volume"
+            android:persistent="false" >
+            <CheckBoxPreference
+                android:key="pref_key_useDefaultVolume"
+                android:title="@string/pref_useDefaultVolume"
+                android:summary="@string/pref_useDefaultVolume_summary"
+                android:defaultValue="true"
+                android:disableDependentsState="true" />
+            <ListPreference 
+                android:key="pref_key_alarmVolume"
+                android:dependency="pref_key_useDefaultVolume"
+                android:title="@string/pref_alarmVolume"
+                android:dialogTitle="@string/pref_alarmVolume" 
+                android:entries="@array/pref_alarmVolume_entries"
+                android:entryValues="@array/pref_alarmVolume_values"
+                android:defaultValue="@string/pref_alarmVolume_default" />
+        </PreferenceScreen>
+        <CheckBoxPreference
+            android:key="pref_key_showAlarmIcon"
+            android:title="@string/pref_showAlarmIcon"
+            android:summary="@string/pref_showAlarmIcon_summary"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+    
+    <PreferenceCategory
+        android:title="NFC"
+        android:key="pref_key_nfc_settings" >
+        <CheckBoxPreference
+            android:key="pref_key_dummyPref"
+            android:title="@string/pref_dummyPref"
+            android:summary="@string/pref_dummyPref_summary"
+            android:defaultValue="true" />
+    </PreferenceCategory>
+    
+</PreferenceScreen>

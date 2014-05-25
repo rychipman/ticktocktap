@@ -21,5 +21,35 @@
     <string name="details_missing_ringtone">Please select an alarm tone</string>
     <string name="title_activity_alarm_dismiss">AlarmDismissActivity</string>
     <string name="title_activity_nfc">NFCActivity</string>
+    
+
+    <!-- ######### PREFERENCE STRINGS ########### -->
+
+    <string name="pref_colorScheme">Color Scheme</string>
+    <string name="pref_colorScheme_default">PREF_THEME_DARK</string>
+
+    <string name="pref_silenceAfter">Silence After</string>
+    <string name="pref_silenceAfter_default">PREF_SILENCE_AFTER_10</string>
+
+    <string name="pref_fadeIn">Fade-in Duration</string>
+    <string name="pref_fadeIn_default">PREF_FADEIN_NONE</string>
+
+    <string name="pref_numSnoozes">Snooze Limit</string>
+    <string name="pref_numSnoozes_default">PREF_NUM_SNOOZES_0</string>
+
+    <string name="pref_snoozeLength">Snooze Length</string>
+    <string name="pref_snoozeLength_default">PREF_SNOOZE_LENGTH_5</string>
+
+    <string name="pref_useDefaultVolume">Use Default Volume</string>
+    <string name="pref_useDefaultVolume_summary">Use the alarm volume specified in system settings</string>
+
+    <string name="pref_alarmVolume">Alarm Volume</string>
+    <string name="pref_alarmVolume_default">PREF_ALARM_VOLUME_9</string>
+
+    <string name="pref_showAlarmIcon">Show Alarm Icon</string>
+    <string name="pref_showAlarmIcon_summary">Show status bar icon when an alarm is set</string>
+
+    <string name="pref_dummyPref">Dummy Preference</string>
+    <string name="pref_dummyPref_summary">A dummy placeholder preference</string>
 
 </resources>

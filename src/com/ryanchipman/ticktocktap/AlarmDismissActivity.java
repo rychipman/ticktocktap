@@ -20,6 +20,7 @@ public class AlarmDismissActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_alarm_dismiss);
 		//TODO: make action bar, etc. invisible?
+		//TODO: dismiss this page unless called by nfc and an alarm is actually going off
 		Button b = (Button) findViewById(R.id.dismiss_button);
 		b.setOnClickListener(new View.OnClickListener() {
 			@Override
