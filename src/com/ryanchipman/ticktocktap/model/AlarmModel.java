@@ -29,6 +29,7 @@ public class AlarmModel implements Parcelable{
 	private Uri alarmTone; //ringtone TODO: add functionality for choosing music or other tones
 	private String name; //name of the alarm
 	private boolean isEnabled; //if it is enabled
+
 	/**
 	 * Basic AlarmModel constructor
 	 * @param id the id to give it (i think this is always -1...)

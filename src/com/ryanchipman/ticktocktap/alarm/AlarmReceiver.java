@@ -21,7 +21,6 @@ public class AlarmReceiver extends BroadcastReceiver {
  
     @Override
     public void onReceive(Context context, Intent intent) {
-    	//TODO: have clicking on the notification lead to a screen directing you to tap the tag.
     	
     	AlarmModel alarm = intent.getParcelableExtra(AlarmsActivity.EXTRA_MODEL);
     	

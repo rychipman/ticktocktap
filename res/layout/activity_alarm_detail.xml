@@ -5,7 +5,6 @@
     android:isScrollContainer="true" >
 
     <RelativeLayout
-        android:id="@+id/alarm_detail_root_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:paddingBottom="16dp"
@@ -37,109 +36,90 @@
             android:layout_alignParentLeft="true"
             android:layout_below="@+id/alarm_details_name" />
         
-        <LinearLayout
-            android:id="@+id/alarm_details_repeat_container"
-            android:layout_width="match_parent"
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
+            android:id="@+id/alarm_details_repeat_weekly"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/divider2"
+            android:layout_alignParentLeft="true"
+            android:checked="true"
+            android:text="@string/details_repeat_weekly" />
+        
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
+            android:id="@+id/alarm_details_repeat_sunday"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
-            android:layout_below="@id/divider2" >
+            android:layout_alignRight="@+id/alarm_details_repeat_weekly"
+            android:layout_below="@+id/alarm_details_repeat_weekly"
+            android:checked="true"
+            android:text="@string/details_sunday" />
         
-	        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
-	            android:id="@+id/alarm_details_repeat_weekly"
-	            android:layout_width="wrap_content"
-	            android:layout_height="wrap_content"
-	            android:checked="true"
-	            android:text="@string/details_repeat_weekly" />
-	        
-	        <RelativeLayout
-	            android:id="@+id/alarm_details_repeat_day_container"
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:paddingBottom="16dp"
-		        android:paddingLeft="16dp"
-		        android:paddingRight="16dp"
-		        android:layout_below="@id/alarm_details_repeat_weekly"
-		        android:layout_alignParentLeft="true"
-		        android:animateLayoutChanges="true" >
-	        
-		        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
-		            android:id="@+id/alarm_details_repeat_sunday"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:layout_alignParentLeft="true"
-		            android:layout_alignParentTop="true"
-		            android:checked="true"
-		            android:text="@string/details_sunday" />
-		        
-		        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
-		            android:id="@+id/alarm_details_repeat_monday"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:layout_alignParentLeft="true"
-		            android:layout_alignRight="@+id/alarm_details_repeat_sunday"
-		            android:layout_below="@+id/alarm_details_repeat_sunday"
-		            android:checked="true"
-		            android:text="@string/details_monday" />
-		        
-		        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
-		            android:id="@+id/alarm_details_repeat_tuesday"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:layout_alignParentLeft="true"
-		            android:layout_alignRight="@+id/alarm_details_repeat_monday"
-		            android:layout_below="@+id/alarm_details_repeat_monday"
-		            android:checked="true"
-		            android:text="@string/details_tuesday" />
-		        
-		        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
-		            android:id="@+id/alarm_details_repeat_wednesday"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:layout_alignParentLeft="true"
-		            android:layout_alignRight="@+id/alarm_details_repeat_tuesday"
-		            android:layout_below="@+id/alarm_details_repeat_tuesday"
-		            android:checked="true"
-		            android:text="@string/details_wednesday" />
-		        
-		        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
-		            android:id="@+id/alarm_details_repeat_thursday"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:layout_alignParentLeft="true"
-		            android:layout_alignRight="@+id/alarm_details_repeat_wednesday"
-		            android:layout_below="@+id/alarm_details_repeat_wednesday"
-		            android:checked="true"
-		            android:text="@string/details_thursday" />
-		        
-		        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
-		            android:id="@+id/alarm_details_repeat_friday"
-		            android:layout_width="wrap_content"
-		            android:layout_height="wrap_content"
-		            android:layout_alignParentLeft="true"
-		            android:layout_alignRight="@+id/alarm_details_repeat_thursday"
-		            android:layout_below="@+id/alarm_details_repeat_thursday"
-		            android:checked="true"
-		            android:text="@string/details_friday" />
-		
-		        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
-			        android:id="@+id/alarm_details_repeat_saturday"
-			        android:layout_width="wrap_content"
-			        android:layout_height="wrap_content"
-			        android:layout_alignParentLeft="true"
-			        android:layout_alignRight="@+id/alarm_details_repeat_friday"
-			        android:layout_below="@+id/alarm_details_repeat_friday"
-			        android:checked="true"
-			        android:text="@string/details_saturday" />
-		    
-		    </RelativeLayout>
-		    
-	    </LinearLayout>
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
+            android:id="@+id/alarm_details_repeat_monday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/alarm_details_repeat_sunday"
+            android:layout_below="@+id/alarm_details_repeat_sunday"
+            android:checked="true"
+            android:text="@string/details_monday" />
+        
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
+            android:id="@+id/alarm_details_repeat_tuesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/alarm_details_repeat_monday"
+            android:layout_below="@+id/alarm_details_repeat_monday"
+            android:checked="true"
+            android:text="@string/details_tuesday" />
+        
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
+            android:id="@+id/alarm_details_repeat_wednesday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/alarm_details_repeat_tuesday"
+            android:layout_below="@+id/alarm_details_repeat_tuesday"
+            android:checked="true"
+            android:text="@string/details_wednesday" />
+        
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
+            android:id="@+id/alarm_details_repeat_thursday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/alarm_details_repeat_wednesday"
+            android:layout_below="@+id/alarm_details_repeat_wednesday"
+            android:checked="true"
+            android:text="@string/details_thursday" />
+        
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
+            android:id="@+id/alarm_details_repeat_friday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignRight="@+id/alarm_details_repeat_thursday"
+            android:layout_below="@+id/alarm_details_repeat_thursday"
+            android:checked="true"
+            android:text="@string/details_friday" />
+
+        <com.ryanchipman.ticktocktap.ui.CustomToggleButton
+	        android:id="@+id/alarm_details_repeat_saturday"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_alignParentLeft="true"
+	        android:layout_alignRight="@+id/alarm_details_repeat_friday"
+	        android:layout_below="@+id/alarm_details_repeat_friday"
+	        android:checked="true"
+	        android:text="@string/details_saturday" />
         
         <View
             android:id="@+id/divider4"
             style="@style/Divider"
             android:layout_alignParentLeft="true"
-            android:layout_below="@+id/alarm_details_repeat_container" />
+            android:layout_below="@+id/alarm_details_repeat_saturday" />
 
         <LinearLayout
             android:id="@+id/alarm_ringtone_container"

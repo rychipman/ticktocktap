@@ -14,11 +14,7 @@ import com.ryanchipman.ticktocktap.alarm.AlarmReceiver;
 import com.ryanchipman.ticktocktap.alarm.RingerService;
 
 public class AlarmDismissActivity extends Activity {
-	//TODO: add some sort of NFC writing capability
-	//TODO: some sort of encryption/private-key strategy on tag to prevent home duplication?
-	//TODO: add some sort of emergency backup shutoff?
-	//TODO: add some sort of text to/from system?
-	//TODO: add warnings/alarms if battery low while alarm is set
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);

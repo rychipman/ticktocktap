@@ -89,7 +89,7 @@ public class RingerService extends Service {
 
 	@Override
 	public IBinder onBind(Intent intent) {
-		//Auto-generated method stub
+		// TODO Auto-generated method stub
 		return null;
 	}
 

@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
-import android.widget.CompoundButton.OnCheckedChangeListener;
 import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.Switch;
@@ -102,9 +101,5 @@ public class CustomToggleButton extends FrameLayout {
 
 	public boolean isChecked() {
 		return button.isChecked();
-	}
-	
-	public void setOnCheckedChangedListener(OnCheckedChangeListener l) {
-		button.setOnCheckedChangeListener(l);
 	}
 }
