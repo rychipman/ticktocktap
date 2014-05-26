@@ -3,6 +3,7 @@ package com.ryanchipman.ticktocktap;
 import android.app.ListActivity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -21,6 +22,7 @@ public class AlarmsActivity extends ListActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		PreferenceManager.setDefaultValues(this, R.xml.preferences, false);
 		setContentView(R.layout.activity_alarms);
 		dbHelper = new AlarmDBHelper(this);
 		mAdapter = new AlarmListAdapter(this, dbHelper.getAlarms());
@@ -52,6 +54,10 @@ public class AlarmsActivity extends ListActivity {
 			case R.id.action_add_alarm:
 				//id of -1 for creating new alarm
 				startAlarmDetailActivity(-1);
+				break;
+			case R.id.action_settings:
+				Intent i = new Intent(this, SettingsActivity.class);
+				startActivity(i);
 				break;
 		}
 		return super.onOptionsItemSelected(item);

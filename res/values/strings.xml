@@ -19,8 +19,8 @@
     <string name="details_alarm_tone">Alarm Tone</string>
     <string name="details_alarm_tone_default">Select an alarm tone</string>
     <string name="details_missing_ringtone">Please select an alarm tone</string>
-    <string name="title_activity_alarm_dismiss">AlarmDismissActivity</string>
-    <string name="title_activity_nfc">NFCActivity</string>
+    <string name="title_activity_alarm_dismiss">Dismiss Alarm</string>
+    <string name="title_activity_settings">Settings</string>
     
 
     <!-- ######### PREFERENCE STRINGS ########### -->
@@ -33,12 +33,16 @@
 
     <string name="pref_fadeIn">Fade-in Duration</string>
     <string name="pref_fadeIn_default">PREF_FADEIN_NONE</string>
+    
+    <string name="pref_title_snooze">Snooze</string>
 
     <string name="pref_numSnoozes">Snooze Limit</string>
     <string name="pref_numSnoozes_default">PREF_NUM_SNOOZES_0</string>
 
     <string name="pref_snoozeLength">Snooze Length</string>
     <string name="pref_snoozeLength_default">PREF_SNOOZE_LENGTH_5</string>
+    
+    <string name="pref_title_volume">Volume</string>
 
     <string name="pref_useDefaultVolume">Use Default Volume</string>
     <string name="pref_useDefaultVolume_summary">Use the alarm volume specified in system settings</string>

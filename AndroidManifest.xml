@@ -79,6 +79,12 @@
                    android:pathPrefix="/now" />
             </intent-filter>
         </activity>
+        
+        <activity 
+            android:name="com.ryanchipman.ticktocktap.SettingsActivity"
+            android:excludeFromRecents="true"
+            android:label="@string/title_activity_settings" >
+        </activity>
     </application>
 
 </manifest>
