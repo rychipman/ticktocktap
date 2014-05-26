@@ -21,10 +21,10 @@
         <item>Never</item>
     </string-array>
     <string-array name="pref_silenceAfter_values">
-        <item>PREF_SILENCE_AFTER_5</item>
-        <item>PREF_SILENCE_AFTER_10</item>
-        <item>PREF_SILENCE_AFTER_20</item>
-        <item>PREF_SILENCE_AFTER_NEVER</item>
+        <item>300000</item>
+        <item>600000</item>
+        <item>1200000</item>
+        <item>-1</item>
     </string-array>
 
     <string-array name="pref_fadeIn_entries">
@@ -38,14 +38,14 @@
         <item>5 minutes</item>
     </string-array>
     <string-array name="pref_fadeIn_values">
-        <item>PREF_FADEIN_NONE</item>
-        <item>PREF_FADEIN_15</item>
-        <item>PREF_FADEIN_30</item>
-        <item>PREF_FADEIN_1</item>
-        <item>PREF_FADEIN_2</item>
-        <item>PREF_FADEIN_3</item>
-        <item>PREF_FADEIN_4</item>
-        <item>PREF_FADEIN_5</item>
+        <item>0</item>
+        <item>15000</item>
+        <item>30000</item>
+        <item>60000</item>
+        <item>120000</item>
+        <item>180000</item>
+        <item>240000</item>
+        <item>300000</item>
     </string-array>
 
     <string-array name="pref_numSnoozes_entries">
@@ -59,14 +59,14 @@
         <item>No Limit</item>
     </string-array>
     <string-array name="pref_numSnoozes_values">
-        <item>PREF_NUM_SNOOZES_NONE</item>
-        <item>PREF_NUM_SNOOZES_1</item>
-        <item>PREF_NUM_SNOOZES_2</item>
-        <item>PREF_NUM_SNOOZES_3</item>
-        <item>PREF_NUM_SNOOZES_4</item>
-        <item>PREF_NUM_SNOOZES_5</item>
-        <item>PREF_NUM_SNOOZES_10</item>
-        <item>PREF_NUM_SNOOZES_NO_LIMIT</item>
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>10</item>
+        <item>-1</item>
     </string-array>
 
     <string-array name="pref_snoozeLength_entries">
@@ -81,15 +81,15 @@
         <item>30 minutes</item>
     </string-array>
     <string-array name="pref_snoozeLength_values">
-        <item>PREF_SNOOZE_LENGTH_2</item>
-        <item>PREF_SNOOZE_LENGTH_5</item>
-        <item>PREF_SNOOZE_LENGTH_6</item>
-        <item>PREF_SNOOZE_LENGTH_7</item>
-        <item>PREF_SNOOZE_LENGTH_8</item>
-        <item>PREF_SNOOZE_LENGTH_9</item>
-        <item>PREF_SNOOZE_LENGTH_10</item>
-        <item>PREF_SNOOZE_LENGTH_20</item>
-        <item>PREF_SNOOZE_LENGTH_30</item>
+        <item>120000</item>
+        <item>300000</item>
+        <item>360000</item>
+        <item>420000</item>
+        <item>480000</item>
+        <item>540000</item>
+        <item>600000</item>
+        <item>1200000</item>
+        <item>2400000</item>
     </string-array>
 
     <string-array name="pref_alarmVolume_entries">
@@ -104,15 +104,15 @@
         <item>9</item>
     </string-array>
     <string-array name="pref_alarmVolume_values">
-        <item>PREF_ALARM_VOLUME_1</item>
-        <item>PREF_ALARM_VOLUME_2</item>
-        <item>PREF_ALARM_VOLUME_3</item>
-        <item>PREF_ALARM_VOLUME_4</item>
-        <item>PREF_ALARM_VOLUME_5</item>
-        <item>PREF_ALARM_VOLUME_6</item>
-        <item>PREF_ALARM_VOLUME_7</item>
-        <item>PREF_ALARM_VOLUME_8</item>
-        <item>PREF_ALARM_VOLUME_9</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+        <item>9</item>
     </string-array>
   
 </resources>
