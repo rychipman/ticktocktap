@@ -6,10 +6,11 @@
         <ListPreference 
             android:key="@string/pref_key_colorScheme"
             android:title="@string/pref_colorScheme"
-            android:dialogTitle="@string/pref_colorScheme" 
+            android:dialogTitle="@string/pref_colorScheme"
             android:entries="@array/pref_colorScheme_entries"
             android:entryValues="@array/pref_colorScheme_values"
-            android:defaultValue="@string/pref_colorScheme_default" />              
+            android:defaultValue="@string/pref_colorScheme_default"
+            android:summary="@string/pref_colorScheme_defaultSummary" />              
     </PreferenceCategory>
     
     <PreferenceCategory 
@@ -21,14 +22,16 @@
             android:dialogTitle="@string/pref_silenceAfter" 
             android:entries="@array/pref_silenceAfter_entries"
             android:entryValues="@array/pref_silenceAfter_values"
-            android:defaultValue="@string/pref_silenceAfter_default" />
+            android:defaultValue="@string/pref_silenceAfter_default"
+            android:summary="@string/pref_silenceAfter_defaultSummary" />
         <ListPreference 
             android:key="@string/pref_key_fadeIn"
             android:title="@string/pref_fadeIn"
             android:dialogTitle="@string/pref_fadeIn" 
             android:entries="@array/pref_fadeIn_entries"
             android:entryValues="@array/pref_fadeIn_values"
-            android:defaultValue="@string/pref_fadeIn_default" />
+            android:defaultValue="@string/pref_fadeIn_default"
+            android:summary="@string/pref_fadeIn_defaultSummary" />
         <PreferenceScreen
             android:key="pref_sub_snooze"
             android:title="@string/pref_title_snooze"
@@ -39,14 +42,16 @@
                 android:dialogTitle="@string/pref_numSnoozes" 
                 android:entries="@array/pref_numSnoozes_entries"
                 android:entryValues="@array/pref_numSnoozes_values"
-                android:defaultValue="@string/pref_numSnoozes_default" />
+                android:defaultValue="@string/pref_numSnoozes_default"
+                android:summary="@string/pref_numSnoozes_defaultSummary" />
             <ListPreference 
                 android:key="@string/pref_key_snoozeLength"
                 android:title="@string/pref_snoozeLength"
                 android:dialogTitle="@string/pref_snoozeLength" 
                 android:entries="@array/pref_snoozeLength_entries"
                 android:entryValues="@array/pref_snoozeLength_values"
-                android:defaultValue="@string/pref_snoozeLength_default" />
+                android:defaultValue="@string/pref_snoozeLength_default"
+                android:summary="@string/pref_snoozeLength_defaultSummary" />
         </PreferenceScreen>
         <PreferenceScreen
             android:key="pref_sub_volume"
@@ -55,7 +60,7 @@
             <CheckBoxPreference
                 android:key="@string/pref_key_useDefaultVolume"
                 android:title="@string/pref_useDefaultVolume"
-                android:summary="@string/pref_useDefaultVolume_summary"
+                android:summary="@string/pref_useDefaultVolume_defaultSummary"
                 android:defaultValue="true"
                 android:disableDependentsState="true" />
             <ListPreference 
@@ -65,12 +70,13 @@
                 android:dialogTitle="@string/pref_alarmVolume" 
                 android:entries="@array/pref_alarmVolume_entries"
                 android:entryValues="@array/pref_alarmVolume_values"
-                android:defaultValue="@string/pref_alarmVolume_default" />
+                android:defaultValue="@string/pref_alarmVolume_default"
+                android:summary="@string/pref_alarmVolume_defaultSummary" />
         </PreferenceScreen>
         <CheckBoxPreference
             android:key="pref_key_showAlarmIcon"
             android:title="@string/pref_showAlarmIcon"
-            android:summary="@string/pref_showAlarmIcon_summary"
+            android:summary="@string/pref_showAlarmIcon_defaultSummary"
             android:defaultValue="true" />
     </PreferenceCategory>
     
